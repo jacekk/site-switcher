@@ -1,9 +1,25 @@
 import { Component } from 'react';
 
+const styles = {
+    frame: {
+        overflow: 'hidden',
+        height: '100%',
+        width: '100%',
+        margin: 0,
+        padding: 0,
+        border: 0,
+    },
+};
+
 class Player extends Component {
     render() {
+        const url = 'http://example.com';
+
         return (
-            <div>Player</div>
+            <iframe
+                src={url}
+                style={styles.frame}
+            ></iframe>
         );
     }
 }

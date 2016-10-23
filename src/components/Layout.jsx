@@ -7,10 +7,11 @@ import theme from  '../material_ui_raw_theme_file';
 
 const styles = {
     mainContent: {
-        zIndex: 1,
+        zIndex: 10,
     },
     menuBtn: {
         zIndex: 10,
+        position: 'fixed',
         background: theme.palette.accent2Color,
     },
     menuIcon: {
@@ -21,7 +22,7 @@ const styles = {
 class Layout extends Component {
     render() {
         return (
-            <div>
+            <div className="app-layout">
                 <IconButton
                     onTouchTap={this.props.onMenuIconClick}
                     style={styles.menuBtn}
@@ -29,7 +30,7 @@ class Layout extends Component {
                 >
                     <MenuIcon />
                 </IconButton>
-                <div style={styles.mainContent}>
+                <div className="app-main-content" style={styles.mainContent}>
                     { this.props.children }
                 </div>
             </div>
