@@ -27,4 +27,8 @@ module.exports = {
   eslint: {
     configFile: './.eslintrc',
   },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+  },
 };

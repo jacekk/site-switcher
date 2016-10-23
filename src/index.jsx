@@ -1,5 +1,5 @@
-import App from './containers/App';
-import configureStore from './store/configureStore';
+import AppContainer from './components/App';
+import store from './store';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -11,11 +11,11 @@ window.React = React;
 // Needed for onTouchTap --> https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-const store = configureStore();
+// const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <AppContainer />
     </Provider>,
     document.getElementById('root')
 );
