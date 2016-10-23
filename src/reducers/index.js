@@ -1,10 +1,9 @@
-import { combineReducers } from 'redux';
-import layout from './layout';
 import collections from './collections';
+import player from './player';
 
-const rootReducer = combineReducers({
-    layout,
+const allReducers = {
     collections,
-});
+    player,
+};
 
-export default rootReducer;
+export default allReducers;

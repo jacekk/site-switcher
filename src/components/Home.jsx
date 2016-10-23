@@ -1,9 +1,17 @@
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
 class Home extends Component {
+
+    componentDidMount() {
+        const { collections } = this.props;
+
+        if (collections.length && this.props.lastPlayedId) {
+            this.goTo(`/collections/${this.props.lastPlayedId}/play`);
+        }
+    }
     
     goTo(path) {
         browserHistory.push(path);
@@ -30,5 +38,10 @@ class Home extends Component {
         );
     }
 }
+
+Home.propTypes = {
+    collections: PropTypes.array.isRequired,
+    lastPlayedId: PropTypes.string,
+};
 
 export default Home;
