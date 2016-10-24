@@ -1,12 +1,15 @@
 import Layout from '../components/Layout';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { toggleLeftDrawer } from '../actions/layout';
+import { toggleLeftDrawer, toggleNewCollectionDialog } from '../actions/layout';
 
 const mapStateToProps = (state) => {
     return {
         isLeftDrawerOpened: state.layout.leftDrawer.opened || false,
         collections: state.collections || [],
+        dialogs: {
+            isNewCollectionOpen: state.layout.newCollectionDialog.opened || false,
+        },
     }
 }
 
@@ -15,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
         actions: {
             toggleLeftDrawer: (showOnTrue) => {
                 dispatch(toggleLeftDrawer(showOnTrue))
+            },
+            toggleNewCollectionDialog: (showOnTrue) => {
+                dispatch(toggleNewCollectionDialog(showOnTrue))
             },
             showCollection: (id) => {
                 browserHistory.push(`/collections/${id}/`);

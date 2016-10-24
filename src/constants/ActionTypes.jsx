@@ -1,1 +1,0 @@
-export const TOGGLE_LEFT_DRAWER = 'TOGGLE_LEFT_DRAWER';

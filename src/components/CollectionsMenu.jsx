@@ -68,7 +68,7 @@ class CollectionsMenu extends Component {
                     </div>
                 }
                 <div style={styles.footer}>
-                    <FloatingActionButton>
+                    <FloatingActionButton onClick={this.props.newItem.bind(null, true)} >
                         <ContentAdd />
                     </FloatingActionButton>
                 </div>
@@ -79,6 +79,7 @@ class CollectionsMenu extends Component {
 
 CollectionsMenu.propTypes = {
     items: PropTypes.array.isRequired,
+    newItem: PropTypes.func.isRequired,
     show: PropTypes.func.isRequired,
     play: PropTypes.func.isRequired,
 };

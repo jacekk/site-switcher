@@ -1,5 +1,7 @@
+import NewCollectionDialog from '../containers/NewCollectionDialog';
 import theme from '../material_ui_raw_theme_file';
 import CollectionsMenu from './CollectionsMenu';
+import Dialog from 'material-ui/Dialog';
 import Drawer from 'material-ui/Drawer';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
@@ -21,7 +23,7 @@ const styles = {
 
 class Layout extends Component {
     render() {
-        const { toggleLeftDrawer, showCollection, playCollection } = this.props.actions;
+        const { toggleLeftDrawer, toggleNewCollectionDialog, showCollection, playCollection } = this.props.actions;
 
         return (
             <div className="app-layout">
@@ -40,10 +42,19 @@ class Layout extends Component {
                 >
                     <CollectionsMenu
                         items={this.props.collections}
+                        newItem={toggleNewCollectionDialog}
                         show={showCollection}
                         play={playCollection}
                     />
                 </Drawer>
+                <Dialog
+                    title="Adding new collection"
+                    modal={false}
+                    open={this.props.dialogs.isNewCollectionOpen}
+                    onRequestClose={toggleNewCollectionDialog.bind(null, false)}
+                >
+                    <NewCollectionDialog />
+                </Dialog>
                 <div className="app-main-content" style={styles.mainContent}>
                     { this.props.children }
                 </div>
@@ -55,8 +66,12 @@ class Layout extends Component {
 Layout.propTypes = {
     collections: PropTypes.array.isRequired,
     isLeftDrawerOpened: PropTypes.bool.isRequired,
+    dialogs: PropTypes.shape({
+        isNewCollectionOpen: PropTypes.bool.isRequired,
+    }),
     actions: PropTypes.shape({
         toggleLeftDrawer: PropTypes.func.isRequired,
+        toggleNewCollectionDialog: PropTypes.func.isRequired,
         showCollection: PropTypes.func.isRequired,
         playCollection: PropTypes.func.isRequired,
     }),

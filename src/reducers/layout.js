@@ -1,10 +1,14 @@
 import {
     TOGGLE_LEFT_DRAWER,
-} from '../constants/ActionTypes'; 
+    TOGGLE_NEW_COLLECTION_DIALOG,
+} from '../constants/action-types'; 
 
 const initialState = {
     leftDrawer: {
         opened: false,
+    },
+    newCollectionDialog: {
+        opened: true,
     },
 };
 
@@ -14,6 +18,12 @@ const layout = (state = initialState, action) => {
         case TOGGLE_LEFT_DRAWER:
             return Object.assign({}, state, { 
                 leftDrawer: {
+                    opened: action.makeVisible,
+                },
+            });
+        case TOGGLE_NEW_COLLECTION_DIALOG:
+            return Object.assign({}, state, { 
+                newCollectionDialog: {
                     opened: action.makeVisible,
                 },
             });
