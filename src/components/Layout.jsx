@@ -15,7 +15,7 @@ const styles = {
         background: theme.palette.primary1Color,
     },
     menuIcon: {
-        color: theme.palette.primary3Color,
+        color: '#fff',
     },
 };
 

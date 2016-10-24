@@ -1,12 +1,36 @@
 import { Card, CardActions, CardTitle } from 'material-ui/Card';
-import Divider from 'material-ui/Divider';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import React from 'react';
 import { Component, PropTypes } from 'react';
 
 const styles = {
     card: {
         paddingBottom: 14,
+    },
+    footer: {
+        padding: '20px 0 25px',
+        borderTop: '#ccc solid 1px',
+        textAlign: 'center',
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+    },
+    items: {
+        overflow: 'auto',
+        flexShrink: 1,
+    },
+    noItemsMsg: {
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '20px 0',
+    },
+    itemBtns: {
+        display: 'flex',
+        justifyContent: 'flex-end',
     },
 };
 
@@ -23,8 +47,8 @@ class CollectionsMenu extends Component {
                     title={item.title}
                     subtitle={ 'links count: ' + item.links.length }
                 />
-                <CardActions>
-                    <RaisedButton label="Show" onClick={show.bind(null, item.id)} secondary={true} />
+                <CardActions style={styles.itemBtns}>
+                    <RaisedButton label="Show" onClick={show.bind(null, item.id)} primary={true} />
                     <RaisedButton label="Play" onClick={play.bind(null, item.id)} primary={true} />
                 </CardActions>
             </Card>
@@ -33,8 +57,21 @@ class CollectionsMenu extends Component {
 
     render() {
         return (
-            <div>
-                { this.props.items.map(this.renderItem.bind(this)) }
+            <div style={styles.container}>
+                {
+                    this.props.items.length ?
+                    <div style={styles.items} >
+                        { this.props.items.map(this.renderItem.bind(this)) }
+                    </div> :
+                    <div style={styles.noItemsMsg} >
+                        There are no collections yet. Please, add one.
+                    </div>
+                }
+                <div style={styles.footer}>
+                    <FloatingActionButton>
+                        <ContentAdd />
+                    </FloatingActionButton>
+                </div>
             </div>
         );
     }
