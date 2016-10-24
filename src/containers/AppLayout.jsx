@@ -1,6 +1,6 @@
 import Layout from '../components/Layout';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 import { toggleLeftDrawer } from '../actions/layout';
 
 const mapStateToProps = (state) => {
@@ -15,6 +15,14 @@ const mapDispatchToProps = (dispatch) => {
         actions: {
             toggleLeftDrawer: (showOnTrue) => {
                 dispatch(toggleLeftDrawer(showOnTrue))
+            },
+            showCollection: (id) => {
+                browserHistory.push(`/collections/${id}/`);
+                dispatch(toggleLeftDrawer(false));
+            },
+            playCollection: (id) => {
+                browserHistory.push(`/collections/${id}/play`);
+                dispatch(toggleLeftDrawer(false));
             },
         },
     };

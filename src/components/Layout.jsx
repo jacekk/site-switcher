@@ -21,7 +21,7 @@ const styles = {
 
 class Layout extends Component {
     render() {
-        const { toggleLeftDrawer } = this.props.actions;
+        const { toggleLeftDrawer, showCollection, playCollection } = this.props.actions;
 
         return (
             <div className="app-layout">
@@ -38,7 +38,11 @@ class Layout extends Component {
                     open={this.props.isLeftDrawerOpened}
                     onRequestChange={ (open) => toggleLeftDrawer(open) }
                 >
-                    <CollectionsMenu items={this.props.collections} />
+                    <CollectionsMenu
+                        items={this.props.collections}
+                        show={showCollection}
+                        play={playCollection}
+                    />
                 </Drawer>
                 <div className="app-main-content" style={styles.mainContent}>
                     { this.props.children }
@@ -53,6 +57,8 @@ Layout.propTypes = {
     isLeftDrawerOpened: PropTypes.bool.isRequired,
     actions: PropTypes.shape({
         toggleLeftDrawer: PropTypes.func.isRequired,
+        showCollection: PropTypes.func.isRequired,
+        playCollection: PropTypes.func.isRequired,
     }),
 };
 
