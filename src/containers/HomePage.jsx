@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
-        collections: state.collections || [],
+        collections: state.collections || [], // @todo pass only the number of collections
         lastPlayedId: state.player.lastPlayedCollectionId || null,
     }
 }

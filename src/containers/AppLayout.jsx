@@ -1,21 +1,24 @@
 import Layout from '../components/Layout';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { browserHistory } from 'react-router';
+import { toggleLeftDrawer } from '../actions/layout';
 
 const mapStateToProps = (state) => {
     return {
-        layout: state.layout,
+        isLeftDrawerOpened: state.layout.leftDrawer.opened || false,
+        collections: state.collections || [],
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onMenuIconClick: () => {
-            browserHistory.push('/');
+        actions: {
+            toggleLeftDrawer: (showOnTrue) => {
+                dispatch(toggleLeftDrawer(showOnTrue))
+            },
         },
-    }
-}
+    };
+};
 
 const AppLayout = connect(
     mapStateToProps,
