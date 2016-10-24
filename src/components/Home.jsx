@@ -1,7 +1,22 @@
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
+
+const styles = {
+    wrapper: {
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    dialogBtn: {
+        marginTop: 20,
+    },
+};
 
 class Home extends Component {
 
@@ -9,31 +24,24 @@ class Home extends Component {
         const { collections } = this.props;
 
         if (collections.length && this.props.lastPlayedId) {
-            this.goTo(`/collections/${this.props.lastPlayedId}/play`);
+            browserHistory.push(
+                `/collections/${this.props.lastPlayedId}/play`
+            );
         }
-    }
-    
-    goTo(path) {
-        browserHistory.push(path);
     }
 
     render() {
+        const { newCollectionDialog } = this.props.actions;
+
         return (
-            <div>
-                <Menu>
-                    <MenuItem onTouchTap={this.goTo.bind(null, "/collections/col-987/play")} >
-                        playing collection
-                    </MenuItem>
-                    <MenuItem onTouchTap={this.goTo.bind(null, "/collections/col-987")} >
-                        collection page
-                    </MenuItem>
-                    <MenuItem onTouchTap={this.goTo.bind(null, "/collections/col-987/link")} >
-                        new link page
-                    </MenuItem>
-                    <MenuItem onTouchTap={this.goTo.bind(null, "/collections/col-987/link/lin-123")} >
-                        link edit page
-                    </MenuItem>
-                </Menu>
+            <div style={styles.wrapper}>
+                <h2>There are no collections to play with. Please, add some :)</h2>
+                <FloatingActionButton
+                    style={styles.dialogBtn}
+                    onClick={newCollectionDialog.bind(null)}
+                >
+                    <ContentAdd />
+                </FloatingActionButton>
             </div>
         );
     }
@@ -42,6 +50,9 @@ class Home extends Component {
 Home.propTypes = {
     collections: PropTypes.array.isRequired,
     lastPlayedId: PropTypes.string,
+    actions: PropTypes.shape({
+        newCollectionDialog: PropTypes.func.isRequired,
+    }),
 };
 
 export default Home;

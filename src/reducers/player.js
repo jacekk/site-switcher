@@ -1,5 +1,5 @@
 const initialState = {
-    lastPlayedCollectionId: 'col-987',
+    lastPlayedCollectionId: null,
 };
 
 const player = (state = initialState, action) => {
