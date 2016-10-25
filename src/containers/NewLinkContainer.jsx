@@ -1,10 +1,13 @@
 import { addNewCollectionLink } from '../actions/collections';
-import NewLinkForm from '../components/NewLinkForm';
+import LinkForm from '../components/LinkForm';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-const mapStateToProps = (state) => {
-    return {}
+const mapStateToProps = () => {
+    return {
+        title: 'New link form',
+        link: {},
+    }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -27,6 +30,6 @@ const mapDispatchToProps = (dispatch, props) => {
 const NewLinkContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(NewLinkForm);
+)(LinkForm);
 
 export default NewLinkContainer;

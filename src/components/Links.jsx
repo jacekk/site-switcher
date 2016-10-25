@@ -41,9 +41,7 @@ const styles = {
         },
         bottomBtns: {
             display: 'flex',
-            justifyContent: 'center',
-            marginTop: 30,
-            marginBottom: 10,
+            margin: '20px 15px 10px',
         },
     },
 };
@@ -98,6 +96,7 @@ class Links extends Component {
                             links={links}
                             goTo={this.goTo.bind(this)}
                             moveUp={moveLinkUp.bind(this, collectionId)}
+                            showBtns={this.props.children === null}
                         />
                         <Divider />
                         <div style={styles.left.bottomBtns} >

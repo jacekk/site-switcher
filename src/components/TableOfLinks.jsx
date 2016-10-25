@@ -24,7 +24,7 @@ class TableOfLinks extends Component {
 
     renderRow(link, index, list) {
         const lastIndex = list.length - 1;
-        const { moveUp, goTo } = this.props;
+        const { moveUp, goTo, showBtns } = this.props;
 
         return (
             <TableRow key={index} selectable={false} >
@@ -32,22 +32,37 @@ class TableOfLinks extends Component {
                 <TableRowColumn>
                     <a href={link.url} target="_blank" >{ link.url }</a>
                 </TableRowColumn>
-                <TableRowColumn style={styles.cols.narrow} >{ link.duration }</TableRowColumn>
-                <TableRowColumn style={styles.cols.narrow} >
-                    <Checkbox checked={link.isActive} disabled={true} />
-                </TableRowColumn>
-                <TableRowColumn style={styles.cols.btn} >
-                    { index !== 0 && <FlatButton label="up" onClick={moveUp.bind(this, index)} /> }
-                </TableRowColumn>
-                <TableRowColumn style={styles.cols.btn} >
-                    <FlatButton label="edit" onClick={goTo.bind(this, '/link/' + index )} />
-                </TableRowColumn>
+                {
+                    showBtns && <TableRowColumn style={styles.cols.narrow} >
+                        { link.duration }
+                    </TableRowColumn>
+                }
+                {
+                    showBtns && <TableRowColumn style={styles.cols.narrow} >
+                        <Checkbox checked={link.isActive} disabled={true} />
+                    </TableRowColumn>
+                }
+                {
+                    showBtns && <TableRowColumn style={styles.cols.btn} >
+                        { index !== 0 && <FlatButton label="up" onClick={moveUp.bind(this, index)} /> }
+                    </TableRowColumn>
+                }
+                {
+                    showBtns && <TableRowColumn style={styles.cols.btn} >
+                        <FlatButton label="edit" onClick={goTo.bind(this, '/link/' + index )} />
+                    </TableRowColumn>
+                }
+                {
+                    showBtns && <TableRowColumn style={styles.cols.btn} >
+                        <FlatButton label="remove" onClick={() => console.log('@todo removal confirmation page')} secondary={true} />
+                    </TableRowColumn>
+                }
             </TableRow>
         );
     }
 
     render() {
-        const { links } = this.props;
+        const { links, showBtns } = this.props;
 
         return (
             <Table>
@@ -55,14 +70,22 @@ class TableOfLinks extends Component {
                     displaySelectAll={false}
                     adjustForCheckbox={false}
                 >
-                    <TableRow>
-                        <TableHeaderColumn>Title</TableHeaderColumn>
-                        <TableHeaderColumn>URL</TableHeaderColumn>
-                        <TableHeaderColumn style={styles.cols.narrow} >Duration</TableHeaderColumn>
-                        <TableHeaderColumn style={styles.cols.narrow} >Active?</TableHeaderColumn>
-                        <TableHeaderColumn style={styles.cols.btn} >Move</TableHeaderColumn>
-                        <TableHeaderColumn style={styles.cols.btn} >Edit</TableHeaderColumn>
-                    </TableRow>
+                    {
+                        showBtns ?
+                        <TableRow>
+                            <TableHeaderColumn>Title</TableHeaderColumn>
+                            <TableHeaderColumn>URL</TableHeaderColumn>
+                            <TableHeaderColumn style={styles.cols.narrow} >Duration</TableHeaderColumn>
+                            <TableHeaderColumn style={styles.cols.narrow} >Active?</TableHeaderColumn>
+                            <TableHeaderColumn style={styles.cols.btn} >Move</TableHeaderColumn>
+                            <TableHeaderColumn style={styles.cols.btn} >Edit</TableHeaderColumn>
+                            <TableHeaderColumn style={styles.cols.btn} >Remove</TableHeaderColumn>
+                        </TableRow> :
+                        <TableRow>
+                            <TableHeaderColumn>Title</TableHeaderColumn>
+                            <TableHeaderColumn>URL</TableHeaderColumn>
+                        </TableRow>
+                    }
                 </TableHeader>
                 <TableBody displayRowCheckbox={false} >
                     {
@@ -81,6 +104,7 @@ class TableOfLinks extends Component {
 }
 
 TableOfLinks.propTypes = {
+    showBtns: PropTypes.bool.isRequired,
     links: PropTypes.array.isRequired,
     goTo: PropTypes.func.isRequired,
     moveUp: PropTypes.func.isRequired,

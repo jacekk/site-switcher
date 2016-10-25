@@ -16,6 +16,15 @@ export function addNewCollectionLink(data, collectionId) {
     }
 }
 
+export function saveCollectionLink(data, collectionId, linkId) {
+    return {
+        type: types.SAVE_COLLECTION_LINK,
+        payload: data,
+        collectionId,
+        linkId,
+    }
+}
+
 export function moveCollectionLinkUp(id, index) {
     return {
         type: types.MOVE_COLLECTION_LINK_UP,

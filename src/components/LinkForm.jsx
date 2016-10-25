@@ -38,11 +38,12 @@ class NewLinkForm extends Component {
         super(props);
         this.state = {
             isActive: true,
-            isFormValid: false,
+            isFormValid: (props.link && props.link.title) || false,
         };
     }
 
-    onInputChange() {
+    onInputChange(propName, ev, value) {
+        this.props.link[propName] = value;
         this.validateFields();
     }
 
@@ -72,12 +73,14 @@ class NewLinkForm extends Component {
     }
 
     render() {
+        const { link } = this.props;
+        const { inputs } = this.state;
         const { onCancel } = this.props.actions;
 
         return (
             <aside style={styles.wrapper}>
                 <header style={styles.header} >
-                    New link form
+                    { this.props.title }
                 </header>
                 <form
                     style={styles.form}
@@ -89,31 +92,33 @@ class NewLinkForm extends Component {
                         ref="url"
                         fullWidth={true}
                         required
-                        onChange={this.onInputChange.bind(this)}
+                        defaultValue={link.url || ''}
+                        onChange={this.onInputChange.bind(this, 'url')}
                     />
                     <TextField
                         floatingLabelText="Title"
                         ref="title"
                         fullWidth={true}
                         required
-                        onChange={this.onInputChange.bind(this)}
+                        defaultValue={link.title || ''}
+                        onChange={this.onInputChange.bind(this, 'title')}
                     />
                     <TextField
                         type="number"
                         min="2"
                         max="3600"
                         step="1"
-                        defaultValue={5}
                         floatingLabelText="Duration"
                         hintText="number of seconds"
                         ref="duration"
                         fullWidth={true}
                         required
-                        onChange={this.onInputChange.bind(this)}
+                        defaultValue={link.duration || 5}
+                        onChange={this.onInputChange.bind(this, 'duration')}
                     />
                     <Toggle
                         label="Is active?"
-                        defaultToggled={true}
+                        defaultToggled={link.isActive || true}
                         onToggle={this.onToggle.bind(this, 'isActive')}
                         style={styles.toggle}
                     />
@@ -137,6 +142,8 @@ class NewLinkForm extends Component {
 }
 
 NewLinkForm.propTypes = {
+    title: PropTypes.string.isRequired,
+    link: PropTypes.object.isRequired,
     actions: PropTypes.shape({
         onCancel: PropTypes.func.isRequired,
         onSubmitCallback: PropTypes.func.isRequired,
