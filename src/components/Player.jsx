@@ -3,6 +3,7 @@ import { Component } from 'react';
 const styles = {
     frame: {
         overflow: 'hidden',
+        display: 'block',
         height: '100%',
         width: '100%',
         margin: 0,

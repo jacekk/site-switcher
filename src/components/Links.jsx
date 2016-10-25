@@ -99,9 +99,10 @@ class Links extends Component {
                             goTo={this.goTo.bind(this)}
                             moveUp={moveLinkUp.bind(this, collectionId)}
                         />
+                        <Divider />
                         <div style={styles.left.bottomBtns} >
                             <FloatingActionButton
-                                onClick={this.goTo.bind(this, '/link/new')}
+                                onClick={this.goTo.bind(this, '/link')}
                             >
                                 <ContentAdd />
                             </FloatingActionButton>

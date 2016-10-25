@@ -1,13 +1,26 @@
-import { connect } from 'react-redux';
+import { addNewCollectionLink } from '../actions/collections';
 import NewLinkForm from '../components/NewLinkForm';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 const mapStateToProps = (state) => {
-    return {
-    }
+    return {}
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
+    const { collectionId } = props.params;
+    const collectionUrl = '/collections/' + collectionId;
+
     return {
+        actions: {
+            onCancel: () => {
+                browserHistory.push(collectionUrl);
+            },
+            onSubmitCallback: (linkData) => {
+                dispatch(addNewCollectionLink(linkData, collectionId));
+                browserHistory.push(collectionUrl);
+            },
+        },
     }
 }
 
