@@ -5,10 +5,11 @@ import { browserHistory } from 'react-router';
 
 const mapStateToProps = (state, props) => {
     const { collectionId, linkId } = props.params;
+    const link = state.collections[collectionId].links[linkId] || {};
 
     return {
         title: 'Link edit form',
-        link: state.collections[collectionId].links[linkId] || {},
+        link: Object.assign({}, link),
     }
 }
 

@@ -36,9 +36,11 @@ class NewLinkForm extends Component {
 
     constructor(props) {
         super(props);
+        const { link } = this.props;
+
         this.state = {
-            isActive: true,
-            isFormValid: (props.link && props.link.title) || false,
+            isActive: link.isActive !== undefined ? link.isActive : true,
+            isFormValid: (link && link.title) || false,
         };
     }
 
@@ -118,7 +120,7 @@ class NewLinkForm extends Component {
                     />
                     <Toggle
                         label="Is active?"
-                        defaultToggled={link.isActive || true}
+                        defaultToggled={this.state.isActive}
                         onToggle={this.onToggle.bind(this, 'isActive')}
                         style={styles.toggle}
                     />

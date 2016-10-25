@@ -41,6 +41,7 @@ const styles = {
         },
         bottomBtns: {
             display: 'flex',
+            justifyContent: 'flex-end',
             margin: '20px 15px 10px',
         },
     },
@@ -100,11 +101,12 @@ class Links extends Component {
                         />
                         <Divider />
                         <div style={styles.left.bottomBtns} >
-                            <FloatingActionButton
-                                onClick={this.goTo.bind(this, '/link')}
-                            >
-                                <ContentAdd />
-                            </FloatingActionButton>
+                            {
+                                ! this.props.children &&
+                                <FloatingActionButton onClick={this.goTo.bind(this, '/link')} >
+                                    <ContentAdd />
+                                </FloatingActionButton>
+                            }
                         </div>
                     </section>
                     <section style={styles.right.wrapper}>

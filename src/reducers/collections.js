@@ -1,4 +1,4 @@
-import { ADD_NEW_COLLECTION, ADD_NEW_COLLECTION_LINK, MOVE_COLLECTION_LINK_UP } from '../constants/action-types';
+import * as types from '../constants/action-types';
 import uuid from 'uuid';
 
 const EXAMPLE_UUID = '45ce39d5-b91c-4d50-89ab-22bd9757e903';
@@ -36,7 +36,7 @@ const moveArrayItems = (arr, from, to) => {
 
 const collections = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_NEW_COLLECTION: {
+        case types.ADD_NEW_COLLECTION: {
             return Object.assign({}, state, {
                 [action.id]: {
                     id: action.id,
@@ -45,7 +45,7 @@ const collections = (state = initialState, action) => {
                 },
             });
         }
-        case MOVE_COLLECTION_LINK_UP: {
+        case types.MOVE_COLLECTION_LINK_UP: {
             if (action.index < 1) {
                 return state;
             }
@@ -59,10 +59,19 @@ const collections = (state = initialState, action) => {
                 [action.id]: collection,
             });
         }
-        case ADD_NEW_COLLECTION_LINK: {
+        case types.ADD_NEW_COLLECTION_LINK: {
             const id = action.collectionId;
             const collection = Object.assign({}, state[id]);
             collection.links.push(action.payload);
+
+            return Object.assign({}, state, {
+                [id]: collection,
+            });
+        }
+        case types.SAVE_COLLECTION_LINK: {
+            const id = action.collectionId;
+            const collection = Object.assign({}, state[id]);
+            collection.links[action.linkId] = action.payload;
 
             return Object.assign({}, state, {
                 [id]: collection,
