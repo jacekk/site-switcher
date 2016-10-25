@@ -7,3 +7,11 @@ export function addNewCollection(id, title) {
         title,
     };
 }
+
+export function moveCollectionLinkUp(id, index) {
+    return {
+        type: types.MOVE_COLLECTION_LINK_UP,
+        id,
+        index,
+    };
+}

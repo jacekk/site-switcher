@@ -21,9 +21,7 @@ const styles = {
 class Home extends Component {
 
     componentDidMount() {
-        const { collections } = this.props;
-
-        if (collections.length && this.props.lastPlayedId) {
+        if (! this.props.noCollections && this.props.lastPlayedId) {
             browserHistory.push(
                 `/collections/${this.props.lastPlayedId}/play`
             );
@@ -48,7 +46,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-    collections: PropTypes.array.isRequired,
+    noCollections: PropTypes.bool.isRequired,
     lastPlayedId: PropTypes.string,
     actions: PropTypes.shape({
         newCollectionDialog: PropTypes.func.isRequired,

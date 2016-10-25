@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     let lastPlayedId = state.player.lastPlayedCollectionId;
-    if (! lastPlayedId && state.collections.length) {
-        lastPlayedId = state.collections[0].id;
+    const collectionsIds = Object.keys(state.collections);
+    if (! lastPlayedId && collectionsIds.length) {
+        lastPlayedId = collectionsIds[0];
     }
 
     return {
-        collections: state.collections || [], // @todo pass only the number of collections
+        noCollections: collectionsIds.length === 0,
         lastPlayedId: lastPlayedId || null,
     }
 }

@@ -2,13 +2,11 @@ import { connect } from 'react-redux';
 import LinkEditForm from '../components/LinkEditForm';
 
 const mapStateToProps = (state) => {
-  return {
-  }
+    return {};
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-  }
+    return {};
 }
 
 const LinkEditContainer = connect(

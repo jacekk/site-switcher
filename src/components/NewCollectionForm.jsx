@@ -8,7 +8,7 @@ const styles = {
     },
     footer: {
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'space-end',
     },
 };
 
@@ -27,8 +27,8 @@ class NewCollectionForm extends Component {
         const val = ev.target.value || '';
 
         this.setState({
-            newTitle: val, 
-            saveDisabled: ! val.length, 
+            newTitle: val,
+            saveDisabled: ! val.length,
         });
     }
 

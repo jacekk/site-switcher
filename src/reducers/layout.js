@@ -21,13 +21,13 @@ const layout = (state = initialState, action) => {
                     opened: action.makeVisible,
                 },
             });
+
         case TOGGLE_NEW_COLLECTION_DIALOG:
             return Object.assign({}, state, {
                 newCollectionDialog: {
                     opened: action.makeVisible,
                 },
             });
-
     };
 
     return state;

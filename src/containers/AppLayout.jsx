@@ -5,8 +5,8 @@ import { toggleLeftDrawer, toggleNewCollectionDialog } from '../actions/layout';
 
 const mapStateToProps = (state) => {
     return {
+        collections: state.collections || {},
         isLeftDrawerOpened: state.layout.leftDrawer.opened || false,
-        collections: state.collections || [],
         dialogs: {
             isNewCollectionOpen: state.layout.newCollectionDialog.opened || false,
         },

@@ -1,5 +1,5 @@
 import { addNewCollection } from '../actions/collections';
-import { toggleNewCollectionDialog } from '../actions/layout';
+import { toggleLeftDrawer, toggleNewCollectionDialog } from '../actions/layout';
 import NewCollectionForm from '../components/NewCollectionForm';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
@@ -14,8 +14,9 @@ const mapDispatchToProps = (dispatch) => {
         actions: {
             save: (newTitle) => {
                 const newId = uuid.v4();
-                dispatch(toggleNewCollectionDialog(false));
                 dispatch(addNewCollection(newId, newTitle));
+                dispatch(toggleNewCollectionDialog(false));
+                dispatch(toggleLeftDrawer(false));
                 browserHistory.push(`/collections/` + newId);
             },
             cancel: () => {

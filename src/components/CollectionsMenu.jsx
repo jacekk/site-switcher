@@ -35,6 +35,7 @@ const styles = {
 };
 
 class CollectionsMenu extends Component {
+
     renderItem(item, index) {
         const { show, play } = this.props;
 
@@ -56,19 +57,22 @@ class CollectionsMenu extends Component {
     }
 
     render() {
+        const { items, newItem } = this.props;
+        const ids = Object.keys(items);
+
         return (
             <div style={styles.container}>
                 {
-                    this.props.items.length ?
+                    ids.length ?
                     <div style={styles.items} >
-                        { this.props.items.map(this.renderItem.bind(this)) }
+                        { ids.map(id => this.renderItem(items[id], id)) }
                     </div> :
                     <div style={styles.noItemsMsg} >
                         There are no collections yet. Please, add one.
                     </div>
                 }
                 <div style={styles.footer}>
-                    <FloatingActionButton onClick={this.props.newItem.bind(null, true)} >
+                    <FloatingActionButton onClick={newItem.bind(null, true)} >
                         <ContentAdd />
                     </FloatingActionButton>
                 </div>
@@ -78,7 +82,7 @@ class CollectionsMenu extends Component {
 }
 
 CollectionsMenu.propTypes = {
-    items: PropTypes.array.isRequired,
+    items: PropTypes.object.isRequired,
     newItem: PropTypes.func.isRequired,
     show: PropTypes.func.isRequired,
     play: PropTypes.func.isRequired,
