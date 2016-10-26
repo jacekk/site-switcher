@@ -59,6 +59,15 @@ const collections = (state = initialState, action) => {
                 [id]: collection,
             });
         }
+        case types.REMOVE_COLLECTION_LINK: {
+            const id = action.collectionId;
+            const collection = Object.assign({}, state[id]);
+            collection.links.splice(action.linkId, 1);
+
+            return Object.assign({}, state, {
+                [id]: collection,
+            });
+        }
     }
 
     return state;

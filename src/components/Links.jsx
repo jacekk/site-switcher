@@ -63,7 +63,7 @@ class Links extends Component {
 
     render() {
         const { title, links = [], id: collectionId } = this.props.collection;
-        const { moveLinkUp, moveLinkDown } = this.props.actions;
+        const { moveLinkUp, removeLink } = this.props.actions;
 
         return (
             <div>
@@ -97,6 +97,7 @@ class Links extends Component {
                             links={links}
                             goTo={this.goTo.bind(this)}
                             moveUp={moveLinkUp.bind(this, collectionId)}
+                            remove={removeLink.bind(this, collectionId)}
                             showBtns={this.props.children === null}
                         />
                         <Divider />
@@ -122,6 +123,7 @@ Links.propTypes = {
     collection: PropTypes.object.isRequired,
     actions: PropTypes.shape({
         moveLinkUp: PropTypes.func.isRequired,
+        removeLink: PropTypes.func.isRequired,
     }),
 };
 

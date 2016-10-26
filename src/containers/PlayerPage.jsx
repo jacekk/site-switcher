@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state, props) => {
     const { collectionId } = props.routeParams;
     const linkId = state.player.currentLinkId;
-    const links = state.collections[collectionId].links;
+    const links = (state.collections[collectionId] || {}).links || [];
     const activeLinks = links.filter(item => item.isActive);
-    const link = activeLinks[linkId];
+    const link = activeLinks[linkId] || {};
 
     let nextLinkId = linkId + 1;
     if (nextLinkId > activeLinks.length - 1) {

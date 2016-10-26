@@ -24,7 +24,7 @@ class TableOfLinks extends Component {
 
     renderRow(link, index, list) {
         const lastIndex = list.length - 1;
-        const { moveUp, goTo, showBtns } = this.props;
+        const { moveUp, remove, goTo, showBtns } = this.props;
 
         return (
             <TableRow key={index} selectable={false} >
@@ -54,7 +54,7 @@ class TableOfLinks extends Component {
                 }
                 {
                     showBtns && <TableRowColumn style={styles.cols.btn} >
-                        <FlatButton label="remove" onClick={() => console.log('@todo removal confirmation page')} secondary={true} />
+                        <FlatButton label="remove" onClick={remove.bind(this, index)} secondary={true} />
                     </TableRowColumn>
                 }
             </TableRow>
@@ -108,6 +108,7 @@ TableOfLinks.propTypes = {
     links: PropTypes.array.isRequired,
     goTo: PropTypes.func.isRequired,
     moveUp: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired,
 };
 
 export default TableOfLinks;

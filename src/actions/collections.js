@@ -32,3 +32,11 @@ export function moveCollectionLinkUp(id, index) {
         index,
     };
 }
+
+export function removeCollectionLink(collectionId, linkId) {
+    return {
+        type: types.REMOVE_COLLECTION_LINK,
+        collectionId,
+        linkId,
+    }
+}

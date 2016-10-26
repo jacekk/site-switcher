@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Links from '../components/Links';
-import { moveCollectionLinkUp, moveCollectionLinkDown } from '../actions/collections';
+import { moveCollectionLinkUp, removeCollectionLink } from '../actions/collections';
 
 const mapStateToProps = (state, props) => {
     const { collectionId } = props.routeParams;
@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => {
             moveLinkUp: (collectionId, linkIndex) => {
                 dispatch(moveCollectionLinkUp(collectionId, linkIndex));
             },
-            moveLinkDown: (collectionId, linkIndex) => {
-                dispatch(moveCollectionLinkDown(collectionId, linkIndex));
+            removeLink: (collectionId, linkIndex) => {
+                dispatch(removeCollectionLink(collectionId, linkIndex));
             },
         },
     }

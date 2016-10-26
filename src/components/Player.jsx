@@ -10,6 +10,14 @@ const styles = {
         padding: 0,
         border: 0,
     },
+    nothingToPlay: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        width: '100%',
+        fontSize: 30,
+    },
 };
 
 class Player extends Component {
@@ -24,6 +32,9 @@ class Player extends Component {
     }
 
     playNext() {
+        if (! this.props.link.url) {
+            return;
+        }
         this.props.actions.playNextLink(
             this.props.nextLinkId,
             this.props.collectionId
@@ -44,11 +55,14 @@ class Player extends Component {
     render() {
         const { url } = this.props.link;
 
+        if (url) {
+            return <iframe src={url} style={styles.frame} ></iframe>;
+        }
+
         return (
-            <iframe
-                src={url}
-                style={styles.frame}
-            ></iframe>
+            <div style={styles.nothingToPlay} >
+                There is nothing to play. Please, add some links.
+            </div>
         );
     }
 }
