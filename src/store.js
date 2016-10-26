@@ -3,9 +3,13 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { routerReducer } from 'react-router-redux';
 import { combineReducers, compose, createStore } from 'redux';
+import persistState from 'redux-localstorage';
 
 const defaultState = {};
 const enhancers = compose(
+    persistState(null, {
+        key: 'site-switcher',
+    }),
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
