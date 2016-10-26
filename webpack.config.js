@@ -4,6 +4,7 @@ module.exports = {
     jsx: "./src/index.jsx",
     css: "./src/main.css",
     html: "./src/index.html",
+    htaccess: "./src/.htaccess",
   },
 
   output: {
@@ -19,6 +20,7 @@ module.exports = {
       { test: /\.html$/, loader: "file?name=[name].[ext]" },
       { test: /\.css$/, loader: "file?name=[name].[ext]" },
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ["react-hot","babel-loader"]},
+      { test: /\.htaccess$/, loader: "file?name=[name].[ext]" },
     ],
   },
   resolve: {
