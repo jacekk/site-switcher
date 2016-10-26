@@ -61,7 +61,7 @@ class Player extends Component {
 
         return (
             <div style={styles.nothingToPlay} >
-                There is nothing to play. Please, add some links.
+                There is nothing to play. Please, add some links :)
             </div>
         );
     }

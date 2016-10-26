@@ -16,6 +16,10 @@ const styles = {
     dialogBtn: {
         marginTop: 20,
     },
+    noCollectionsMsg: {
+        fontSize: 30,
+        paddingBottom: 10,
+    },
 };
 
 class Home extends Component {
@@ -33,7 +37,9 @@ class Home extends Component {
 
         return (
             <div style={styles.wrapper}>
-                <h2>There are no collections to play with. Please, add some :)</h2>
+                <div style={styles.noCollectionsMsg} >
+                    There are no collections to play with. Please, add some :)
+                </div>
                 <FloatingActionButton
                     style={styles.dialogBtn}
                     onClick={newCollectionDialog.bind(null)}

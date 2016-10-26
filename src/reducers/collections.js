@@ -27,6 +27,12 @@ const collections = (state = initialState, action) => {
                 },
             });
         }
+        case types.REMOVE_COLLECTION: {
+            let newState = Object.assign({}, state);
+            delete newState[action.collectionId];
+
+            return newState
+        }
         case types.MOVE_COLLECTION_LINK_UP: {
             if (action.index < 1) {
                 return state;

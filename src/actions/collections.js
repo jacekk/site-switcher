@@ -8,6 +8,13 @@ export function addNewCollection(id, title) {
     };
 }
 
+export function removeCollection(collectionId) {
+    return {
+        type: types.REMOVE_COLLECTION,
+        collectionId,
+    }
+}
+
 export function addNewCollectionLink(data, collectionId) {
     return {
         type: types.ADD_NEW_COLLECTION_LINK,

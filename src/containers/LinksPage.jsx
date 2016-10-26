@@ -1,6 +1,7 @@
-import { connect } from 'react-redux';
+import { moveCollectionLinkUp, removeCollection, removeCollectionLink } from '../actions/collections';
 import Links from '../components/Links';
-import { moveCollectionLinkUp, removeCollectionLink } from '../actions/collections';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 const mapStateToProps = (state, props) => {
     const { collectionId } = props.routeParams;
@@ -18,6 +19,10 @@ const mapDispatchToProps = (dispatch) => {
             },
             removeLink: (collectionId, linkIndex) => {
                 dispatch(removeCollectionLink(collectionId, linkIndex));
+            },
+            removeCollection: (collectionId) => {
+                dispatch(removeCollection(collectionId));
+                browserHistory.push('/');
             },
         },
     }

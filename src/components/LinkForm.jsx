@@ -91,6 +91,7 @@ class NewLinkForm extends Component {
                     <TextField
                         type="url"
                         floatingLabelText="URL"
+                        hintText="http://example.com"
                         ref="url"
                         fullWidth={true}
                         required

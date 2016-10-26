@@ -50,7 +50,7 @@ class CollectionsMenu extends Component {
                 />
                 <CardActions style={styles.itemBtns}>
                     <RaisedButton label="Show" onClick={show.bind(null, item.id)} primary={true} />
-                    <RaisedButton label="Play" onClick={play.bind(null, item.id)} primary={true} />
+                    <RaisedButton label="Play" onClick={play.bind(null, item.id)} primary={true} disabled={!item.links.length} />
                 </CardActions>
             </Card>
         );

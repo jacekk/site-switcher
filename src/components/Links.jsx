@@ -63,7 +63,7 @@ class Links extends Component {
 
     render() {
         const { title, links = [], id: collectionId } = this.props.collection;
-        const { moveLinkUp, removeLink } = this.props.actions;
+        const { moveLinkUp, removeLink, removeCollection } = this.props.actions;
 
         return (
             <div>
@@ -76,18 +76,15 @@ class Links extends Component {
                             label="Destroy"
                             secondary={true}
                             style={styles.header.btn}
-                            onClick={() => alert('@todo: add modal')}
+                            onClick={removeCollection.bind(this, collectionId)}
                         />
-                        {
-                            links.length ?
-                            <RaisedButton
-                                label="Play"
-                                primary={true}
-                                style={styles.header.btn}
-                                onClick={this.goTo.bind(this, '/play')}
-                            /> :
-                            null
-                        }
+                        <RaisedButton
+                            label="Play"
+                            primary={true}
+                            style={styles.header.btn}
+                            onClick={this.goTo.bind(this, '/play')}
+                            disabled={!links.length}
+                        />
                     </div>
                 </header>
                 <Divider />
@@ -124,6 +121,7 @@ Links.propTypes = {
     actions: PropTypes.shape({
         moveLinkUp: PropTypes.func.isRequired,
         removeLink: PropTypes.func.isRequired,
+        removeCollection: PropTypes.func.isRequired,
     }),
 };
 
