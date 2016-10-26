@@ -1,7 +1,7 @@
+import { toggleLeftDrawer, toggleNewCollectionDialog } from '../actions/layout';
 import Layout from '../components/Layout';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { toggleLeftDrawer, toggleNewCollectionDialog } from '../actions/layout';
 
 const mapStateToProps = (state) => {
     return {
