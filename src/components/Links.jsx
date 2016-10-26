@@ -1,5 +1,6 @@
 import TableOfLinks from './TableOfLinks';
 import Divider from 'material-ui/Divider';
+import Drawer from 'material-ui/Drawer';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -26,24 +27,13 @@ const styles = {
             marginLeft: 10,
         },
     },
-    sectionsWrapper: {
+    mainSection: {
+        padding: 10,
+    },
+    bottomBtns: {
         display: 'flex',
-    },
-    right: {
-        wrapper: {
-            flexGrow: 1,
-        },
-    },
-    left: {
-        wrapper: {
-            flexGrow: 1,
-            padding: 10,
-        },
-        bottomBtns: {
-            display: 'flex',
-            justifyContent: 'flex-end',
-            margin: '20px 15px 10px',
-        },
+        justifyContent: 'flex-end',
+        margin: '20px 15px 10px',
     },
 };
 
@@ -88,29 +78,31 @@ class Links extends Component {
                     </div>
                 </header>
                 <Divider />
-                <div style={styles.sectionsWrapper}>
-                    <section style={styles.left.wrapper}>
-                        <TableOfLinks
-                            links={links}
-                            goTo={this.goTo.bind(this)}
-                            moveUp={moveLinkUp.bind(this, collectionId)}
-                            remove={removeLink.bind(this, collectionId)}
-                            showBtns={this.props.children === null}
-                        />
-                        <Divider />
-                        <div style={styles.left.bottomBtns} >
-                            {
-                                ! this.props.children &&
-                                <FloatingActionButton onClick={this.goTo.bind(this, '/link')} >
-                                    <ContentAdd />
-                                </FloatingActionButton>
-                            }
-                        </div>
-                    </section>
-                    <section style={styles.right.wrapper}>
-                        { this.props.children }
-                    </section>
-                </div>
+                <section style={styles.mainSection}>
+                    <TableOfLinks
+                        links={links}
+                        goTo={this.goTo.bind(this)}
+                        moveUp={moveLinkUp.bind(this, collectionId)}
+                        remove={removeLink.bind(this, collectionId)}
+                    />
+                    <Divider />
+                    <div style={styles.bottomBtns} >
+                        {
+                            ! this.props.children &&
+                            <FloatingActionButton onClick={this.goTo.bind(this, '/link')} >
+                                <ContentAdd />
+                            </FloatingActionButton>
+                        }
+                    </div>
+                </section>
+                <Drawer
+                    docked={false}
+                    width={320}
+                    openSecondary={true}
+                    open={this.props.children !== null}
+                >
+                    { this.props.children }
+                </Drawer>
             </div>
         );
     }

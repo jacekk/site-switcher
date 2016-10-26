@@ -7,10 +7,7 @@ import { Component, PropTypes } from 'react';
 
 const styles = {
     wrapper: {
-        width: 300,
-        borderLeft: '#ddd solid 1px',
-        margin: '40px 0 20px 20px',
-        padding: '0 30px',
+        margin: 20,
     },
     header: {
         paddingTop: 10,
