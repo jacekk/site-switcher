@@ -1,4 +1,5 @@
 import * as types from '../constants/action-types';
+import SAMPLE_LINKS from '../constants/sample-links';
 import uuid from 'uuid';
 
 const EXAMPLE_UUID = '45ce39d5-b91c-4d50-89ab-22bd9757e903';
@@ -6,27 +7,8 @@ const EXAMPLE_UUID = '45ce39d5-b91c-4d50-89ab-22bd9757e903';
 const initialState = {
     [EXAMPLE_UUID]: {
         id: EXAMPLE_UUID,
-        title: 'Example collection',
-        links: [
-            {
-                title: 'GitHub status page',
-                url: 'https://status.github.com/',
-                isActive: true,
-                duration: 7,
-            },
-            {
-                title: 'FB status page',
-                url: 'https://developers.facebook.com/status/',
-                isActive: false,
-                duration: 3,
-            },
-            {
-                title: 'Example',
-                url: 'http://example.com',
-                isActive: true,
-                duration: 5,
-            },
-        ],
+        title: 'Weather collection',
+        links: SAMPLE_LINKS,
     },
 };
 

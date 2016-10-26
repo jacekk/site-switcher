@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 
 const styles = {
     frame: {
@@ -13,8 +13,36 @@ const styles = {
 };
 
 class Player extends Component {
+    timeoutHandler;
+
+    constructor(props) {
+        super(props);
+        this.timeoutHandler = setTimeout(
+            this.playNext.bind(this),
+            props.link.duration * 1e3
+        );
+    }
+
+    playNext() {
+        this.props.actions.playNextLink(
+            this.props.nextLinkId,
+            this.props.collectionId
+        );
+    }
+
+    componentDidUpdate() {
+        this.timeoutHandler = setTimeout(
+            this.playNext.bind(this),
+            this.props.link.duration * 1e3
+        );
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timeoutHandler);
+    }
+
     render() {
-        const url = 'http://example.com';
+        const { url } = this.props.link;
 
         return (
             <iframe
@@ -23,6 +51,15 @@ class Player extends Component {
             ></iframe>
         );
     }
+}
+
+Player.propTypes = {
+    nextLinkId: PropTypes.number.isRequired,
+    collectionId: PropTypes.string.isRequired,
+    link: PropTypes.object.isRequired,
+    actions: PropTypes.shape({
+        playNextLink: PropTypes.func.isRequired,
+    }),
 }
 
 export default Player;
