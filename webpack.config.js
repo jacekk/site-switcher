@@ -1,12 +1,22 @@
+const webpack = require('webpack');
+
+const isDevMode = process.argv.indexOf('--hot') > -1;
+
+let plugins = [];
+
+if (! isDevMode) {
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+}
+
 module.exports = {
   context: __dirname,
+  plugins: plugins,
   entry: {
     jsx: "./src/index.jsx",
     css: "./src/main.css",
     html: "./src/index.html",
     htaccess: "./src/.htaccess",
   },
-
   output: {
     path: __dirname + "/static",
     filename: "bundle.js",
