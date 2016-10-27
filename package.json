@@ -1,6 +1,6 @@
 {
   "name": "site-switcher",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Web app to display multiple websites (one after another).",
   "main": "src/index.jsx",
   "scripts": {

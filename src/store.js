@@ -8,7 +8,7 @@ import persistState from 'redux-localstorage';
 const defaultState = {};
 const enhancers = compose(
     persistState(null, {
-        key: 'site-switcher',
+        key: 'site-switcher-v0.2.0',
     }),
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
