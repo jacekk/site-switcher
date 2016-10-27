@@ -1,20 +1,23 @@
 import { addNewCollection } from '../actions/collections';
 import { toggleLeftDrawer, toggleNewCollectionDialog } from '../actions/layout';
-import NewCollectionForm from '../components/NewCollectionForm';
+import EditCollectionForm from '../components/EditCollectionForm';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import uuid from 'uuid';
 
-const mapStateToProps = (state) => {
-    return {};
+const mapStateToProps = () => {
+    return {
+        id: '',
+        title: '',
+    };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            save: (newTitle) => {
+            save: (title, emptyId) => {
                 const newId = uuid.v4();
-                dispatch(addNewCollection(newId, newTitle));
+                dispatch(addNewCollection(newId, title));
                 dispatch(toggleNewCollectionDialog(false));
                 dispatch(toggleLeftDrawer(false));
                 browserHistory.push(`/collections/` + newId);
@@ -29,6 +32,6 @@ const mapDispatchToProps = (dispatch) => {
 const NewCollectionDialog = connect(
     mapStateToProps,
     mapDispatchToProps
-)(NewCollectionForm);
+)(EditCollectionForm);
 
 export default NewCollectionDialog;

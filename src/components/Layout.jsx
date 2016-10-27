@@ -38,7 +38,7 @@ class Layout extends Component {
                     docked={false}
                     width={400}
                     open={this.props.isLeftDrawerOpened}
-                    onRequestChange={ (open) => toggleLeftDrawer(open) }
+                    onRequestChange={open => toggleLeftDrawer(open)}
                 >
                     <CollectionsMenu
                         items={this.props.collections}
@@ -56,7 +56,7 @@ class Layout extends Component {
                     <NewCollectionDialog />
                 </Dialog>
                 <div className="app-main-content" style={styles.mainContent}>
-                    { this.props.children }
+                    {this.props.children}
                 </div>
             </div>
         );

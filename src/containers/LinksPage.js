@@ -1,4 +1,5 @@
 import { moveCollectionLinkUp, removeCollection, removeCollectionLink } from '../actions/collections';
+import { toggleEditCollectionDialog } from '../actions/layout';
 import Links from '../components/Links';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
@@ -8,12 +9,21 @@ const mapStateToProps = (state, props) => {
 
     return {
         collection: state.collections[collectionId] || {},
+        dialogs: {
+            isEditCollectionOpen: state.layout.editCollectionDialog.opened || false,
+        },
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
+            editCollectionDialog: () => {
+                dispatch(toggleEditCollectionDialog(true));
+            },
+            toggleEditCollectionDialog: () => {
+                dispatch(toggleEditCollectionDialog(false));
+            },
             moveLinkUp: (collectionId, linkIndex) => {
                 dispatch(moveCollectionLinkUp(collectionId, linkIndex));
             },

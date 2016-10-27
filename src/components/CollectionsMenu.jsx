@@ -38,6 +38,8 @@ class CollectionsMenu extends Component {
 
     renderItem(item, index) {
         const { show, play } = this.props;
+        const activeLinksCount = item.links.filter(item => item.isActive).length;
+        const subtitleTxt = `links count: ${item.links.length} | active: ${activeLinksCount}`;
 
         return (
             <Card
@@ -46,11 +48,20 @@ class CollectionsMenu extends Component {
             >
                 <CardTitle
                     title={item.title}
-                    subtitle={ 'links count: ' + item.links.length }
+                    subtitle={subtitleTxt}
                 />
                 <CardActions style={styles.itemBtns}>
-                    <RaisedButton label="Show" onClick={show.bind(null, item.id)} primary={true} />
-                    <RaisedButton label="Play" onClick={play.bind(null, item.id)} primary={true} disabled={!item.links.length} />
+                    <RaisedButton
+                        label="Show"
+                        onClick={show.bind(null, item.id)}
+                        primary={true}
+                    />
+                    <RaisedButton
+                        label="Play"
+                        onClick={play.bind(null, item.id)}
+                        primary={true}
+                        disabled={! activeLinksCount}
+                    />
                 </CardActions>
             </Card>
         );

@@ -1,4 +1,6 @@
+import EditCollectionDialog from '../containers/EditCollectionDialog';
 import TableOfLinks from './TableOfLinks';
+import Dialog from 'material-ui/Dialog';
 import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -53,7 +55,7 @@ class Links extends Component {
 
     render() {
         const { title, links = [], id: collectionId } = this.props.collection;
-        const { moveLinkUp, removeLink, removeCollection } = this.props.actions;
+        const { toggleEditCollectionDialog, editCollectionDialog, moveLinkUp, removeLink, removeCollection } = this.props.actions;
 
         return (
             <div>
@@ -63,17 +65,23 @@ class Links extends Component {
                     </h1>
                     <div style={styles.header.topBtns} >
                         <RaisedButton
-                            label="Destroy"
-                            secondary={true}
-                            style={styles.header.btn}
-                            onClick={removeCollection.bind(this, collectionId)}
-                        />
-                        <RaisedButton
                             label="Play"
                             primary={true}
                             style={styles.header.btn}
                             onClick={this.goTo.bind(this, '/play')}
-                            disabled={!links.length}
+                            disabled={!links.filter(item => item.isActive).length}
+                        />
+                        <RaisedButton
+                            label="Edit title"
+                            primary={true}
+                            style={styles.header.btn}
+                            onClick={editCollectionDialog}
+                        />
+                        <RaisedButton
+                            label="Destroy"
+                            secondary={true}
+                            style={styles.header.btn}
+                            onClick={removeCollection.bind(this, collectionId)}
                         />
                     </div>
                 </header>
@@ -101,8 +109,16 @@ class Links extends Component {
                     openSecondary={true}
                     open={this.props.children !== null}
                 >
-                    { this.props.children }
+                    {this.props.children}
                 </Drawer>
+                <Dialog
+                    title="Edit collection title"
+                    modal={false}
+                    open={this.props.dialogs.isEditCollectionOpen}
+                    onRequestClose={toggleEditCollectionDialog.bind(null, false)}
+                >
+                    <EditCollectionDialog id={collectionId} />
+                </Dialog>
             </div>
         );
     }
@@ -111,6 +127,7 @@ class Links extends Component {
 Links.propTypes = {
     collection: PropTypes.object.isRequired,
     actions: PropTypes.shape({
+        editCollectionDialog: PropTypes.func.isRequired,
         moveLinkUp: PropTypes.func.isRequired,
         removeLink: PropTypes.func.isRequired,
         removeCollection: PropTypes.func.isRequired,

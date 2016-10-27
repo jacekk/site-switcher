@@ -27,6 +27,15 @@ const collections = (state = initialState, action) => {
                 },
             });
         }
+        case types.SAVE_COLLECTION_TITLE: {
+            const id = action.collectionId;
+            const collection = Object.assign({}, state[id]);
+            collection.title = action.title;
+
+            return Object.assign({}, state, {
+                [id]: collection,
+            });
+        }
         case types.REMOVE_COLLECTION: {
             let newState = Object.assign({}, state);
             delete newState[action.collectionId];

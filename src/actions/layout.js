@@ -13,3 +13,11 @@ export function toggleNewCollectionDialog(showOnTrue) {
         makeVisible: showOnTrue,
     };
 }
+
+export function toggleEditCollectionDialog(showOnTrue) {
+    return {
+        type: types.TOGGLE_EDIT_COLLECTION_DIALOG,
+        makeVisible: showOnTrue,
+    };
+}
+

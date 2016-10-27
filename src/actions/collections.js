@@ -8,6 +8,14 @@ export function addNewCollection(id, title) {
     };
 }
 
+export function saveCollectionTitle(collectionId, title) {
+    return {
+        type: types.SAVE_COLLECTION_TITLE,
+        collectionId,
+        title,
+    }
+}
+
 export function removeCollection(collectionId) {
     return {
         type: types.REMOVE_COLLECTION,

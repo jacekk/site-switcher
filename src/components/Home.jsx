@@ -36,7 +36,7 @@ class Home extends Component {
         const { newCollectionDialog } = this.props.actions;
 
         return (
-            <div style={styles.wrapper}>
+            <div style={styles.wrapper} >
                 <div style={styles.noCollectionsMsg} >
                     There are no collections to play with. Please, add some :)
                 </div>

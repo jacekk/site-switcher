@@ -12,37 +12,39 @@ const styles = {
     },
 };
 
-class NewCollectionForm extends Component {
+class EditCollectionForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            newTitle: 'abc',
-            saveDisabled: true,
+            title: props.title,
+            saveDisabled: props.title === '',
         };
     }
 
-    onNewTitleChange(ev) {
+    onTitleChange(ev) {
         const val = ev.target.value || '';
 
         this.setState({
-            newTitle: val,
+            title: val,
             saveDisabled: ! val.length,
         });
     }
 
     onSubmit() {
-        this.props.actions.save(this.state.newTitle);
+        this.props.actions.save(this.state.title, this.props.id);
     }
 
     render() {
         const { cancel } = this.props.actions;
+        const { title } = this.props;
 
         return (
             <div>
                 <TextField
-                    hintText="new collection title"
+                    hintText="collection title"
                     fullWidth={true}
-                    onChange={this.onNewTitleChange.bind(this)}
+                    defaultValue={title}
+                    onChange={this.onTitleChange.bind(this)}
                 />
                 <div style={styles.footer}>
                     <RaisedButton
@@ -63,11 +65,13 @@ class NewCollectionForm extends Component {
     }
 }
 
-NewCollectionForm.propTypes = {
+EditCollectionForm.propTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     actions: PropTypes.shape({
         cancel: PropTypes.func.isRequired,
         save: PropTypes.func.isRequired,
     }),
 };
 
-export default NewCollectionForm;
+export default EditCollectionForm;
