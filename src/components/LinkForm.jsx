@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 import React from 'react';
 import { Component, PropTypes } from 'react';
+import isURL from 'validator/lib/isURL';
 
 const styles = {
     wrapper: {
@@ -28,6 +29,11 @@ const styles = {
 };
 
 const REQUIRED_FIELDS = ['url', 'title', 'duration'];
+const URL_REQUIREMENTS = {
+    protocols: ['http', 'https'],
+    require_protocol: true,
+    require_tld: false,
+};
 
 class NewLinkForm extends Component {
 
@@ -50,9 +56,11 @@ class NewLinkForm extends Component {
         const emptyFields = REQUIRED_FIELDS.filter(propName => {
             return this.refs[propName].getValue().trim() === '';
         })
+        const noEmptyFields = emptyFields.length === 0;
+        const urlValue = this.refs.url.getValue().trim();
 
         this.setState({
-            isFormValid: emptyFields.length === 0,
+            isFormValid: noEmptyFields && isURL(urlValue, URL_REQUIREMENTS),
         });
     }
 

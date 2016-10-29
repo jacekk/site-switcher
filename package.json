@@ -5,7 +5,7 @@
   "main": "src/index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server -d --hot --inline --progress --colors",
+    "dev": "webpack-dev-server -d --hot --inline --progress --colors",
     "build": "webpack --progress --colors"
   },
   "author": "https://github.com/jacekk",
@@ -46,6 +46,7 @@
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.6.0",
     "redux-localstorage": "^0.4.1",
-    "uuid": "^2.0.3"
+    "uuid": "^2.0.3",
+    "validator": "^6.1.0"
   }
 }
