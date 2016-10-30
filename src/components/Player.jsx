@@ -44,6 +44,10 @@ class Player extends Component {
 
     componentDidUpdate() {
         this.props.actions.collectionStartedPlaying(this.props.currLinkId);
+        if (this.props.currLinkId === this.props.nextLinkId) {
+            // this.refs.frame.contentWindow.location.reload(true); // WONT work; some origin policy issue
+            this.refs.frame.src = this.refs.frame.src;
+        }
     }
 
     componentWillReceiveProps(newProps) {
@@ -63,7 +67,11 @@ class Player extends Component {
         const { url } = this.props.link;
 
         if (url) {
-            return <iframe src={url} style={styles.frame} ></iframe>;
+            return <iframe
+                ref="frame"
+                src={url}
+                style={styles.frame}
+            ></iframe>;
         }
 
         return (
