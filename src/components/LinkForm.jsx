@@ -81,7 +81,6 @@ class NewLinkForm extends Component {
 
     render() {
         const { link } = this.props;
-        const { inputs } = this.state;
         const { onCancel } = this.props.actions;
 
         return (

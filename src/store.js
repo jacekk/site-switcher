@@ -22,9 +22,11 @@ const store = createStore(
     enhancers
 );
 
-export const history = syncHistoryWithStore(browserHistory, store);
+syncHistoryWithStore(browserHistory, store);
+// OR:
+// export const history = syncHistoryWithStore(browserHistory, store);
 
-if (module.hot) {
+if (module['hot']) {
     module.hot.accept('./reducers/', () => {
         const nextRootReducer = require('./reducers/index').default;
         store.replaceReducer(nextRootReducer);

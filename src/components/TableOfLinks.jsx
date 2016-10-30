@@ -23,7 +23,6 @@ const styles = {
 class TableOfLinks extends Component {
 
     renderRow(link, index, list) {
-        const lastIndex = list.length - 1;
         const { moveUp, remove, goTo } = this.props;
 
         return (

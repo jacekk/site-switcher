@@ -2,10 +2,20 @@ const webpack = require('webpack');
 
 const isDevMode = process.argv.indexOf('--hot') > -1;
 
-let plugins = [];
+let plugins = [
+    new webpack.optimize.CommonsChunkPlugin("vendor", "vendors.js"),
+];
 
 if (! isDevMode) {
-    plugins.push(new webpack.optimize.UglifyJsPlugin());
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
+        include: /main/,
+    }));
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
+        include: /vendors/,
+        compress: {
+            warnings: false,
+        },
+    }));
 }
 
 module.exports = {
@@ -16,10 +26,16 @@ module.exports = {
     css: "./src/main.css",
     html: "./src/index.html",
     htaccess: "./src/.htaccess",
+    vendor: [ // those cause warnings in UglifyJs:
+      "redux",
+      "react-router",
+      "react-router-redux",
+      "material-ui",
+    ],
   },
   output: {
     path: __dirname + "/static",
-    filename: "bundle.js",
+    filename: "main.js",
   },
   module: {
     preLoaders: [
