@@ -29,7 +29,6 @@ module.exports = {
   plugins: plugins,
   entry: {
     jsx: "./src/index.jsx",
-    css: "./src/main.css",
     html: "./src/index.html",
     htaccess: "./src/.htaccess",
     vendor: [ // those cause warnings in UglifyJs:
