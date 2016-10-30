@@ -25,6 +25,7 @@ class Player extends Component {
 
     constructor(props) {
         super(props);
+
         this.timeoutHandler = setTimeout(
             this.playNext.bind(this),
             props.link.duration * 1e3
@@ -32,16 +33,21 @@ class Player extends Component {
     }
 
     playNext() {
-        if (! this.props.link.url) {
-            return;
+        if (this.props.link.url) {
+            this.props.actions.playNextLink(this.props.nextLinkId);
         }
-        this.props.actions.playNextLink(
-            this.props.nextLinkId,
-            this.props.collectionId
-        );
+    }
+
+    componentWillMount() {
+        this.props.actions.collectionStartedPlaying(this.props.currLinkId);
     }
 
     componentDidUpdate() {
+        this.props.actions.collectionStartedPlaying(this.props.currLinkId);
+    }
+
+    componentWillReceiveProps(newProps) {
+        clearTimeout(this.timeoutHandler);
         this.timeoutHandler = setTimeout(
             this.playNext.bind(this),
             this.props.link.duration * 1e3
@@ -50,6 +56,7 @@ class Player extends Component {
 
     componentWillUnmount() {
         clearTimeout(this.timeoutHandler);
+        this.timeoutHandler = null;
     }
 
     render() {
@@ -69,9 +76,10 @@ class Player extends Component {
 
 Player.propTypes = {
     nextLinkId: PropTypes.number.isRequired,
-    collectionId: PropTypes.string.isRequired,
+    currLinkId: PropTypes.number.isRequired,
     link: PropTypes.object.isRequired,
     actions: PropTypes.shape({
+        collectionStartedPlaying: PropTypes.func.isRequired,
         playNextLink: PropTypes.func.isRequired,
     }),
 }

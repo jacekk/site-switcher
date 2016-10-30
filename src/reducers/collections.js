@@ -4,6 +4,7 @@ import uuid from 'uuid';
 
 const EXAMPLE_UUID = '45ce39d5-b91c-4d50-89ab-22bd9757e903';
 
+const originalPageTitle = document.title.toString();
 const initialState = {
     [EXAMPLE_UUID]: {
         id: EXAMPLE_UUID,
@@ -14,6 +15,16 @@ const initialState = {
 
 const moveArrayItems = (arr, from, to) => {
     arr.splice(to, 0, arr.splice(from, 1)[0]);
+}
+
+const getPageTitleByPlayedCollectionAndLink = (state, collectionId, linkId) => {
+    const collection = state[collectionId];
+    const link = collection.links[linkId];
+
+    return [
+        link.title,
+        collection.title,
+    ].join(' | ');
 }
 
 const collections = (state = initialState, action) => {
@@ -82,6 +93,22 @@ const collections = (state = initialState, action) => {
             return Object.assign({}, state, {
                 [id]: collection,
             });
+        }
+        case types.COLLECTION_STARTED_PLAYING: {
+            document.title = getPageTitleByPlayedCollectionAndLink(
+                state, action.collectionId, action.linkId
+            );
+            break;
+        }
+        case types.PLAY_NEXT_LINK: {
+            document.title = getPageTitleByPlayedCollectionAndLink(
+                state, action.collectionId, action.nextLinkId
+            );
+            break;
+        }
+        case types.ROUTER_LOCATION_CHANGE: {
+            document.title = originalPageTitle;
+            break;
         }
     }
 

@@ -1,4 +1,4 @@
-import { playNextLink } from '../actions/player';
+import { collectionStartedPlaying, playNextLink } from '../actions/player';
 import Player from '../components/Player';
 import { connect } from 'react-redux';
 
@@ -15,16 +15,21 @@ const mapStateToProps = (state, props) => {
     }
 
     return {
-        collectionId,
+        currLinkId: linkId,
         nextLinkId,
         link: Object.assign({}, link),
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
+    const { collectionId } = props.routeParams;
+
     return {
         actions: {
-            playNextLink: (nextLinkId, collectionId) => {
+            collectionStartedPlaying: (linkId) => {
+                dispatch(collectionStartedPlaying(linkId, collectionId));
+            },
+            playNextLink: (nextLinkId) => {
                 dispatch(playNextLink(nextLinkId, collectionId));
             },
         },

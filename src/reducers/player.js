@@ -12,7 +12,7 @@ const player = (state = initialState, action) => {
                 currentLinkId: 0,
             });
         }
-        case types.PLAY_LINK: {
+        case types.PLAY_NEXT_LINK: {
             return Object.assign({}, state, {
                 lastPlayedCollectionId: action.collectionId,
                 currentLinkId: action.nextLinkId,
