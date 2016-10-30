@@ -30,7 +30,8 @@ module.exports = {
   entry: {
     jsx: "./src/index.jsx",
     html: "./src/index.html",
-    htaccess: "./src/.htaccess",
+    html: "./src/index.html",
+    favicon: "./src/favicon.ico",
     vendor: [ // those cause warnings in UglifyJs:
       "redux",
       "react-router",
@@ -53,7 +54,7 @@ module.exports = {
       { test: /\.html$/, loader: "file?name=[name].[ext]" },
       { test: /\.css$/, loader: "file?name=[name].[ext]" },
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ["react-hot","babel-loader"]},
-      { test: /\.htaccess$/, loader: "file?name=[name].[ext]" },
+      { test: /\.htaccess|\.ico$/, loader: "file?name=[name].[ext]" },
     ],
   },
   resolve: {
