@@ -1,3 +1,4 @@
+require('./logger/rollbar.js');
 import AppContainer from './components/App';
 import store from './store';
 import React from 'react';
