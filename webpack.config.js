@@ -16,6 +16,12 @@ if (! isDevMode) {
             warnings: false,
         },
     }));
+    plugins.push(new webpack.DefinePlugin({
+        "process.env": {
+            NODE_ENV: JSON.stringify("production"),
+            BROWSER: JSON.stringify(true),
+        },
+    }));
 }
 
 module.exports = {
@@ -29,7 +35,9 @@ module.exports = {
     vendor: [ // those cause warnings in UglifyJs:
       "redux",
       "react-router",
+      "react-redux",
       "react-router-redux",
+      "react-tap-event-plugin",
       "material-ui",
     ],
   },

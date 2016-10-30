@@ -22,9 +22,7 @@ const store = createStore(
     enhancers
 );
 
-syncHistoryWithStore(browserHistory, store);
-// OR:
-// export const history = syncHistoryWithStore(browserHistory, store);
+export const history = syncHistoryWithStore(browserHistory, store);
 
 if (module['hot']) {
     module.hot.accept('./reducers/', () => {
