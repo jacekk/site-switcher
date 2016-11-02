@@ -3,9 +3,7 @@ import TableOfLinks from './TableOfLinks';
 import Dialog from 'material-ui/Dialog';
 import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
@@ -97,9 +95,11 @@ class Links extends Component {
                     <div style={styles.bottomBtns} >
                         {
                             ! this.props.children &&
-                            <FloatingActionButton onClick={this.goTo.bind(this, '/link')} >
-                                <ContentAdd />
-                            </FloatingActionButton>
+                            <RaisedButton
+                                label="Add link"
+                                primary={true}
+                                onClick={this.goTo.bind(this, '/link')}
+                            />
                         }
                     </div>
                 </section>

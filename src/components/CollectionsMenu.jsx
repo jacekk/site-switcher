@@ -1,7 +1,5 @@
 import { Card, CardActions, CardTitle } from 'material-ui/Card';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import React from 'react';
 import { Component, PropTypes } from 'react';
 
@@ -83,9 +81,11 @@ class CollectionsMenu extends Component {
                     </div>
                 }
                 <div style={styles.footer}>
-                    <FloatingActionButton onClick={newItem.bind(null, true)} >
-                        <ContentAdd />
-                    </FloatingActionButton>
+                    <RaisedButton
+                        label="Add collection"
+                        primary={true}
+                        onClick={newItem.bind(null, true)}
+                    />
                 </div>
             </div>
         );
