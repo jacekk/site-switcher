@@ -1,7 +1,7 @@
 import { saveCollectionLink } from '../actions/collections';
 import LinkForm from '../components/LinkForm';
+import { history } from '../store';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 
 const mapStateToProps = (state, props) => {
     const { collectionId, linkId } = props.params;
@@ -20,11 +20,11 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         actions: {
             onCancel: () => {
-                browserHistory.push(collectionUrl);
+                history.push(collectionUrl);
             },
             onSubmitCallback: (linkData) => {
                 dispatch(saveCollectionLink(linkData, collectionId, linkId));
-                browserHistory.push(collectionUrl);
+                history.push(collectionUrl);
             },
         },
     }
