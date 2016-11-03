@@ -1,15 +1,15 @@
 {
-  "name": "SiteSwitcher",
+  "name": "site-switcher",
   "version": "0.2.0",
   "description": "Web and Electron apps to display multiple websites (one after another).",
   "main": "src/main.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "app:prepare": "rm -rf electron/dist && mkdir electron/dist",
+    "app:prepare": "rm -rf electron-app/dist && mkdir electron-app/dist",
     "dev:web": "webpack-dev-server -d --hot --inline --progress --colors",
     "build:web": "webpack --progress --colors",
     "dev:app": "npm run app:prepare && webpack --watch --progress --colors --config webpack.electron.js",
-    "build:app": "npm run app:prepare && webpack --progress --colors --config webpack.electron.js"
+    "build:app": "npm run app:prepare && webpack --progress --colors --config webpack.electron.js && cd electron-app && build --linux"
   },
   "author": "https://github.com/jacekk",
   "license": "MIT",
