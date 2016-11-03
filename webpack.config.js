@@ -28,9 +28,9 @@ module.exports = {
   context: __dirname,
   plugins: plugins,
   entry: {
-    jsx: "./src/index.jsx",
+    jsx: "./src/main.jsx",
     html: "./src/index.html",
-    html: "./src/index.html",
+    css: "./src/main.css",
     favicon: "./src/favicon.ico",
     vendor: [ // those cause warnings in UglifyJs:
       "redux",
