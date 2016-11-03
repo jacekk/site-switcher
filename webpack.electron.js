@@ -4,7 +4,7 @@ const webpackBase = require('./webpack.config.js');
 delete webpackBase.devServer;
 delete webpackBase.entry.vendor;
 
-webpackBase.output.path = __dirname + "/electron/dist";
+webpackBase.output.path = __dirname + "/electron-app/dist";
 webpackBase.entry.html = "./src/electron-app.html";
 
 webpackBase.plugins = [

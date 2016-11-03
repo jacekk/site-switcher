@@ -1,5 +1,5 @@
 {
-    "name": "SiteSwitcher",
+    "name": "site-switcher",
     "version": "0.2.0",
     "main": "app.js"
 }
