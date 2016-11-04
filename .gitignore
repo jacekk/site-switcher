@@ -3,6 +3,5 @@ node_modules/
 static/
 .module-cache/
 *.log*
-src/logger/rollbar-config.js
 electron-app/releases/
 electron-app/dist/**
