@@ -8,7 +8,8 @@
     "dev:web": "webpack-dev-server -d --hot --inline --progress --colors",
     "build:web": "webpack --progress --colors",
     "prepare:dist": "rm -rf electron-app/dist && mkdir electron-app/dist",
-    "dev:app": "npm run prepare:dist && webpack --watch --progress --colors --config webpack.electron.js",
+    "app:dev": "npm run prepare:dist && webpack --watch --progress --colors --config webpack.electron.js",
+    "app:run": "node_modules/.bin/electron electron-app",
     "build:app:linux": "npm run prepare:dist && webpack --progress --colors --config webpack.electron.js && cd electron-app && build --linux",
     "build:app:arm": "npm run prepare:dist && webpack --progress --colors --config webpack.electron.js && cd electron-app && build --armv7l"
   },

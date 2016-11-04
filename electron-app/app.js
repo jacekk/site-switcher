@@ -1,25 +1,41 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const url = require('url')
 
+const menu = Menu.buildFromTemplate([
+    {
+        label: 'Exit',
+        role: 'close',
+    },
+    {
+        label: 'Fullscreen',
+        role: 'togglefullscreen',
+    },
+    {
+        label: 'DevTools',
+        click (item, focusedWindow) {
+            if (focusedWindow) {
+                focusedWindow.webContents.openDevTools()
+            }
+        },
+    },
+])
+
 let win
 
-function createWindow() {
+app.on('ready', () => {
     win = new BrowserWindow()
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'dist/electron-app.html'),
         protocol: 'file:',
         slashes: true,
     }))
-    // win.webContents.openDevTools()
     win.on('closed', () => {
         win = null
     })
-}
-
-app.on('ready', createWindow)
-app.on('browser-window-created', function (ev, browserWindow) {
-    browserWindow.setMenu(null)
+})
+app.on('browser-window-created', (ev, browserWindow) => {
+    browserWindow.setMenu(menu)
 })
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
