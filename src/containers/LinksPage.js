@@ -2,7 +2,7 @@ import { moveCollectionLinkUp, removeCollection, removeCollectionLink } from '..
 import { toggleEditCollectionDialog } from '../actions/layout';
 import Links from '../components/Links';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { history } from '../store';
 
 const mapStateToProps = (state, props) => {
     const { collectionId } = props.routeParams;
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
             },
             removeCollection: (collectionId) => {
                 dispatch(removeCollection(collectionId));
-                browserHistory.push('/');
+                history.push('/');
             },
         },
     }

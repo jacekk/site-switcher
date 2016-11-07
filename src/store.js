@@ -1,10 +1,11 @@
 import allReducers from './reducers/index';
-import { browserHistory } from 'react-router';
+import { browserHistory, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { routerReducer } from 'react-router-redux';
 import { combineReducers, compose, createStore } from 'redux';
 import persistState from 'redux-localstorage';
 
+const isElectronApp = window.location.protocol.includes('file:');
 const defaultState = {};
 const enhancers = compose(
     persistState(null, {
@@ -22,7 +23,10 @@ const store = createStore(
     enhancers
 );
 
-export const history = syncHistoryWithStore(browserHistory, store);
+export const history = syncHistoryWithStore(
+    isElectronApp ? hashHistory : browserHistory,
+    store
+);
 
 if (module['hot']) {
     module.hot.accept('./reducers/', () => {

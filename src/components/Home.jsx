@@ -1,9 +1,9 @@
+import { history } from '../store';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Component, PropTypes } from 'react';
-import { browserHistory } from 'react-router';
 
 const styles = {
     wrapper: {
@@ -26,7 +26,7 @@ class Home extends Component {
 
     componentDidMount() {
         if (! this.props.noCollections && this.props.lastPlayedId) {
-            browserHistory.push(
+            history.push(
                 `/collections/${this.props.lastPlayedId}/play`
             );
         }

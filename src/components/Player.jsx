@@ -46,7 +46,9 @@ class Player extends Component {
         this.props.actions.collectionStartedPlaying(this.props.currLinkId);
         if (this.props.currLinkId === this.props.nextLinkId) {
             // this.refs.frame.contentWindow.location.reload(true); // WONT work; some origin policy issue
-            this.refs.frame.src = this.refs.frame.src;
+            if (this.refs.frame && this.refs.frame.src) {
+                this.refs.frame.src = this.refs.frame.src;
+            }
         }
     }
 

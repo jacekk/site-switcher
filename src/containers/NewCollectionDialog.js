@@ -2,7 +2,7 @@ import { addNewCollection } from '../actions/collections';
 import { toggleLeftDrawer, toggleNewCollectionDialog } from '../actions/layout';
 import EditCollectionForm from '../components/EditCollectionForm';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { history } from '../store';
 import uuid from 'uuid';
 
 const mapStateToProps = () => {
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(addNewCollection(newId, title));
                 dispatch(toggleNewCollectionDialog(false));
                 dispatch(toggleLeftDrawer(false));
-                browserHistory.push(`/collections/` + newId);
+                history.push(`/collections/` + newId);
             },
             cancel: () => {
                 dispatch(toggleNewCollectionDialog(false));

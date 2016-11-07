@@ -19,12 +19,22 @@ const moveArrayItems = (arr, from, to) => {
 
 const getPageTitleByPlayedCollectionAndLink = (state, collectionId, linkId) => {
     const collection = state[collectionId];
-    const link = collection.links[linkId];
 
-    return [
+    if (! collection || ! collection.links || ! collection.links.length) {
+        return null;
+    }
+
+    const link = collection.links[linkId] || {};
+    const joined = [
         link.title,
         collection.title,
     ].join(' | ');
+
+    if (joined.trim() === '|') {
+        return null;
+    }
+
+    return joined;
 }
 
 const collections = (state = initialState, action) => {
@@ -95,15 +105,21 @@ const collections = (state = initialState, action) => {
             });
         }
         case types.COLLECTION_STARTED_PLAYING: {
-            document.title = getPageTitleByPlayedCollectionAndLink(
+            const newTitle = getPageTitleByPlayedCollectionAndLink(
                 state, action.collectionId, action.linkId
             );
+            if (newTitle) {
+                document.title = newTitle;
+            }
             break;
         }
         case types.PLAY_NEXT_LINK: {
-            document.title = getPageTitleByPlayedCollectionAndLink(
+            const newTitle = getPageTitleByPlayedCollectionAndLink(
                 state, action.collectionId, action.nextLinkId
             );
+            if (newTitle) {
+                document.title = newTitle;
+            }
             break;
         }
         case types.ROUTER_LOCATION_CHANGE: {

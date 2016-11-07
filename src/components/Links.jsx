@@ -1,11 +1,11 @@
 import EditCollectionDialog from '../containers/EditCollectionDialog';
+import { history } from '../store';
 import TableOfLinks from './TableOfLinks';
 import Dialog from 'material-ui/Dialog';
 import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Component, PropTypes } from 'react';
-import { browserHistory } from 'react-router';
 
 const styles = {
     header: {
@@ -41,14 +41,14 @@ class Links extends Component {
 
     componentWillMount() {
         if (! this.props.collection.id) {
-            browserHistory.push('/');
+            history.push('/');
         }
     }
 
     goTo(pathSuffix) {
         const basePath = '/collections/' + this.props.collection.id;
 
-        browserHistory.push(basePath + pathSuffix);
+        history.push(basePath + pathSuffix);
     }
 
     render() {

@@ -7,8 +7,6 @@ import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 window.React = React;
-
-// Needed for onTouchTap --> https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
 ReactDOM.render(

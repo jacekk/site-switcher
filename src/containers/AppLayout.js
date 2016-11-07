@@ -1,7 +1,7 @@
 import { toggleLeftDrawer, toggleNewCollectionDialog } from '../actions/layout';
 import Layout from '../components/Layout';
+import { history } from '../store';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 
 const mapStateToProps = (state) => {
     return {
@@ -23,11 +23,11 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(toggleNewCollectionDialog(showOnTrue))
             },
             showCollection: (id) => {
-                browserHistory.push(`/collections/${id}/`);
+                history.push(`/collections/${id}/`);
                 dispatch(toggleLeftDrawer(false));
             },
             playCollection: (id) => {
-                browserHistory.push(`/collections/${id}/play`);
+                history.push(`/collections/${id}/play`);
                 dispatch(toggleLeftDrawer(false));
             },
         },

@@ -36,8 +36,9 @@ class CollectionsMenu extends Component {
 
     renderItem(item, index) {
         const { show, play } = this.props;
-        const activeLinksCount = item.links.filter(item => item.isActive).length;
-        const subtitleTxt = `links count: ${item.links.length} | active: ${activeLinksCount}`;
+        const links = item.links || [];
+        const activeLinksCount = links.filter(item => item.isActive).length;
+        const subtitleTxt = `links count: ${links.length} | active: ${activeLinksCount}`;
 
         return (
             <Card
