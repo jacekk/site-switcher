@@ -10,6 +10,9 @@ const initialState = {
     editCollectionDialog: {
         opened: false,
     },
+    removeCollectionDialog: {
+        opened: false,
+    },
 };
 
 const layout = (state = initialState, action) => {
@@ -33,6 +36,20 @@ const layout = (state = initialState, action) => {
             return Object.assign({}, state, {
                 editCollectionDialog: {
                     opened: action.makeVisible,
+                },
+            });
+
+        case types.TOGGLE_REMOVE_COLLECTION_DIALOG:
+            return Object.assign({}, state, {
+                removeCollectionDialog: {
+                    opened: action.makeVisible,
+                },
+            });
+
+        case types.REMOVE_COLLECTION:
+            return Object.assign({}, state, {
+                removeCollectionDialog: {
+                    opened: false,
                 },
             });
     };

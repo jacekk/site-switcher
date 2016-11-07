@@ -7,17 +7,17 @@ const initialState = {
 
 const player = (state = initialState, action) => {
     switch (action.type) {
-        case types.ROUTER_LOCATION_CHANGE: {
+
+        case types.ROUTER_LOCATION_CHANGE:
             return Object.assign({}, state, {
                 currentLinkId: 0,
             });
-        }
-        case types.PLAY_NEXT_LINK: {
+
+        case types.PLAY_NEXT_LINK:
             return Object.assign({}, state, {
                 lastPlayedCollectionId: action.collectionId,
                 currentLinkId: action.nextLinkId,
             });
-        }
     }
 
     return state;

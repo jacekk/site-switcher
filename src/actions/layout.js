@@ -21,3 +21,10 @@ export function toggleEditCollectionDialog(showOnTrue) {
     };
 }
 
+export function toggleRemoveCollectionDialog(showOnTrue) {
+    return {
+        type: types.TOGGLE_REMOVE_COLLECTION_DIALOG,
+        makeVisible: showOnTrue,
+    };
+}
+

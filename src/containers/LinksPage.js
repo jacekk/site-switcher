@@ -1,5 +1,5 @@
 import { moveCollectionLinkUp, removeCollection, removeCollectionLink } from '../actions/collections';
-import { toggleEditCollectionDialog } from '../actions/layout';
+import { toggleEditCollectionDialog, toggleRemoveCollectionDialog } from '../actions/layout';
 import Links from '../components/Links';
 import { connect } from 'react-redux';
 import { history } from '../store';
@@ -10,7 +10,8 @@ const mapStateToProps = (state, props) => {
     return {
         collection: state.collections[collectionId] || {},
         dialogs: {
-            isEditCollectionOpen: state.layout.editCollectionDialog.opened || false,
+            isEditCollectionOpen: (state.layout.editCollectionDialog || {}).opened || false,
+            isRemoveCollectionOpen: (state.layout.removeCollectionDialog || {}).opened || false,
         },
     }
 }
@@ -18,17 +19,20 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            editCollectionDialog: () => {
+            editCollection: () => {
                 dispatch(toggleEditCollectionDialog(true));
             },
-            toggleEditCollectionDialog: () => {
-                dispatch(toggleEditCollectionDialog(false));
+            toggleEditCollectionDialog: (toggle) => {
+                dispatch(toggleEditCollectionDialog(toggle));
             },
             moveLinkUp: (collectionId, linkIndex) => {
                 dispatch(moveCollectionLinkUp(collectionId, linkIndex));
             },
             removeLink: (collectionId, linkIndex) => {
                 dispatch(removeCollectionLink(collectionId, linkIndex));
+            },
+            toggleRemoveCollectionDialog: (toggle) => {
+                dispatch(toggleRemoveCollectionDialog(toggle));
             },
             removeCollection: (collectionId) => {
                 dispatch(removeCollection(collectionId));
