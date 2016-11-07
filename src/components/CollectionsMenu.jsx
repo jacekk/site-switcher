@@ -53,13 +53,12 @@ class CollectionsMenu extends Component {
                     <RaisedButton
                         label="Show"
                         onClick={show.bind(null, item.id)}
-                        primary={true}
                     />
                     <RaisedButton
                         label="Play"
                         onClick={play.bind(null, item.id)}
-                        primary={true}
                         disabled={! activeLinksCount}
+                        primary={true}
                     />
                 </CardActions>
             </Card>
@@ -84,7 +83,6 @@ class CollectionsMenu extends Component {
                 <div style={styles.footer}>
                     <RaisedButton
                         label="Add collection"
-                        primary={true}
                         onClick={newItem.bind(null, true)}
                     />
                 </div>

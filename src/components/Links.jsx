@@ -64,14 +64,13 @@ class Links extends Component {
                     <div style={styles.header.topBtns} >
                         <RaisedButton
                             label="Play"
-                            primary={true}
                             style={styles.header.btn}
                             onClick={this.goTo.bind(this, '/play')}
                             disabled={!links.filter(item => item.isActive).length}
+                            primary={true}
                         />
                         <RaisedButton
                             label="Edit title"
-                            primary={true}
                             style={styles.header.btn}
                             onClick={editCollectionDialog}
                         />
@@ -97,7 +96,6 @@ class Links extends Component {
                             ! this.props.children &&
                             <RaisedButton
                                 label="Add link"
-                                primary={true}
                                 onClick={this.goTo.bind(this, '/link')}
                             />
                         }
