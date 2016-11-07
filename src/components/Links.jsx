@@ -78,7 +78,7 @@ class Links extends Component {
                             label="Play"
                             style={styles.header.btn}
                             onClick={this.goTo.bind(this, '/play')}
-                            disabled={!links.filter(item => item.isActive).length}
+                            disabled={! links.filter(item => item.isActive).length}
                             primary={true}
                         />
                         <RaisedButton
@@ -109,6 +109,7 @@ class Links extends Component {
                             <RaisedButton
                                 label="Add link"
                                 onClick={this.goTo.bind(this, '/link')}
+                                primary={! links.filter(item => item.isActive).length}
                             />
                         }
                     </div>
