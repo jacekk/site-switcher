@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, props) => {
     const { collectionId, linkId } = props.params;
-    const link = state.collections[collectionId].links[linkId] || {};
+    const links = (state.collections[collectionId] || {}).links || [];
+    const link = links[linkId] || {};
 
     return {
         title: 'Link edit form',
