@@ -5,7 +5,7 @@ import { routerReducer } from 'react-router-redux';
 import { combineReducers, compose, createStore } from 'redux';
 import persistState from 'redux-localstorage';
 
-const isElectronApp = window.location.protocol.includes('file:');
+const isElectronApp = window.location.protocol && window.location.protocol.indexOf('file:') > -1;
 const defaultState = {};
 const enhancers = compose(
     persistState(null, {
