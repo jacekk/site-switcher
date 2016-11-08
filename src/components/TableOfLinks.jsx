@@ -1,4 +1,5 @@
 import Checkbox from 'material-ui/Checkbox';
+import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import { Component, PropTypes } from 'react';
@@ -22,8 +23,42 @@ const styles = {
 
 class TableOfLinks extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
     renderRow(link, index, list) {
         const { moveUp, remove, goTo } = this.props;
+
+        const closeRemovalDialog = () => {
+            this.setState({
+                ...this.state,
+                [index]: false,
+            });
+        }
+        const openRemovalDialog = () => {
+            this.setState({
+                ...this.state,
+                [index]: true,
+            });
+        }
+        const removeLinkConfirmed = () => {
+            closeRemovalDialog();
+            remove(index);
+        }
+
+        const removalActions = [
+            <FlatButton
+                label="Discard"
+                onTouchTap={closeRemovalDialog}
+            />,
+            <FlatButton
+                label="Remove"
+                secondary={true}
+                onTouchTap={removeLinkConfirmed}
+            />,
+        ];
 
         return (
             <TableRow key={index} selectable={false} >
@@ -44,7 +79,15 @@ class TableOfLinks extends Component {
                     <FlatButton label="edit" onClick={goTo.bind(this, '/link/' + index )} />
                 </TableRowColumn>
                 <TableRowColumn style={styles.cols.btn} >
-                    <FlatButton label="remove" onClick={remove.bind(this, index)} secondary={true} />
+                    <FlatButton label="remove" onClick={openRemovalDialog} secondary={true} />
+                    <Dialog
+                        actions={removalActions}
+                        modal={false}
+                        open={this.state[index] || false}
+                        onRequestClose={closeRemovalDialog}
+                    >
+                        Do you really want to remove "{link.title}" link?
+                    </Dialog>
                 </TableRowColumn>
             </TableRow>
         );
