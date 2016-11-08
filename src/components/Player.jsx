@@ -56,7 +56,7 @@ class Player extends Component {
         clearTimeout(this.timeoutHandler);
         this.timeoutHandler = setTimeout(
             this.playNext.bind(this),
-            this.props.link.duration * 1e3
+            newProps.link.duration * 1e3
         );
     }
 
