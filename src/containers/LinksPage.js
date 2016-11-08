@@ -1,8 +1,8 @@
 import { moveCollectionLinkUp, removeCollection, removeCollectionLink } from '../actions/collections';
 import { toggleEditCollectionDialog, toggleRemoveCollectionDialog } from '../actions/layout';
 import Links from '../components/Links';
-import { connect } from 'react-redux';
 import { history } from '../store';
+import { connect } from 'react-redux';
 
 const mapStateToProps = (state, props) => {
     const { collectionId } = props.routeParams;

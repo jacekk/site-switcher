@@ -54,7 +54,9 @@ class Links extends Component {
 
     render() {
         const { title, links = [], id: collectionId } = this.props.collection;
-        const { toggleEditCollectionDialog, toggleRemoveCollectionDialog, editCollection, moveLinkUp, removeLink, removeCollection } = this.props.actions;
+        const { editCollection, moveLinkUp, removeLink, removeCollection } = this.props.actions;
+        const { toggleEditCollectionDialog, toggleRemoveCollectionDialog } = this.props.actions;
+
         const collectionRemovalActions = [
             <FlatButton
                 label="Discard"
