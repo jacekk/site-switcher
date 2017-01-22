@@ -1,5 +1,7 @@
 # Site switcher
 
+[![Build Status](https://travis-ci.org/jacekk/site-switcher.svg)](https://travis-ci.org/jacekk/site-switcher)
+
 ### Built with:
 
 * [React](https://facebook.github.io/react/)
