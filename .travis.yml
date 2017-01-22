@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+  - '6'
+  - '7'
+
+before_install:
+    - npm install
+    - cd electron-app
+    - npm install
+    - cd ..
+
+script:
+    - npm run web:build
+    - npm run app:build:linux

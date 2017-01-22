@@ -9,9 +9,10 @@
     "web:serve": "http-server ./static -p 8090",
     "app:prepare": "rm -rf electron-app/dist && mkdir electron-app/dist",
     "app:dev": "npm run app:prepare && webpack --watch --progress --colors --config webpack.electron.js",
-    "app:run": "node_modules/.bin/electron electron-app",
-    "app:build:linux": "npm run app:prepare && webpack --progress --colors --config webpack.electron.js && cd electron-app && build --linux",
-    "app:build:arm": "npm run app:prepare && webpack --progress --colors --config webpack.electron.js && cd electron-app && build --armv7l"
+    "app:run": "./node_modules/.bin/electron electron-app",
+    "app:prepare:build": "npm run app:prepare && webpack --progress --colors --config webpack.electron.js && cd electron-app",
+    "app:build:linux": "npm run app:prepare:build && ./node_modules/.bin/build --linux",
+    "app:build:arm": "npm run app:prepare:build && ./node_modules/.bin/build --armv7l"
   },
   "author": "https://github.com/jacekk",
   "license": "MIT",
@@ -54,7 +55,7 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
-    "react-tap-event-plugin": "^1.0.0",
+    "react-tap-event-plugin": "^2.0.0",
     "redux": "^3.6.0",
     "redux-localstorage": "^0.4.1",
     "uuid": "^2.0.3",

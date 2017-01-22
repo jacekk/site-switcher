@@ -11,8 +11,8 @@
 
 ### Requirements:
 
-* node 6.*
-* npm 3.*
+* node 6 or 7
+* npm 3 or 4
 
 ### License
 
