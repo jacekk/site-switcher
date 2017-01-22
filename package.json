@@ -4,17 +4,21 @@
   "description": "Web and Electron apps to display multiple websites (one after another).",
   "main": "src/main.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:web": "webpack-dev-server -d --hot --inline --progress --colors",
-    "build:web": "webpack --progress --colors",
-    "prepare:dist": "rm -rf electron-app/dist && mkdir electron-app/dist",
-    "app:dev": "npm run prepare:dist && webpack --watch --progress --colors --config webpack.electron.js",
+    "web:dev": "webpack-dev-server -d --hot --inline --progress --colors",
+    "web:build": "webpack --progress --colors",
+    "web:serve": "http-server ./static -p 8090",
+    "app:prepare": "rm -rf electron-app/dist && mkdir electron-app/dist",
+    "app:dev": "npm run app:prepare && webpack --watch --progress --colors --config webpack.electron.js",
     "app:run": "node_modules/.bin/electron electron-app",
-    "build:app:linux": "npm run prepare:dist && webpack --progress --colors --config webpack.electron.js && cd electron-app && build --linux",
-    "build:app:arm": "npm run prepare:dist && webpack --progress --colors --config webpack.electron.js && cd electron-app && build --armv7l"
+    "app:build:linux": "npm run app:prepare && webpack --progress --colors --config webpack.electron.js && cd electron-app && build --linux",
+    "app:build:arm": "npm run app:prepare && webpack --progress --colors --config webpack.electron.js && cd electron-app && build --armv7l"
   },
   "author": "https://github.com/jacekk",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacekk/site-switcher"
+  },
   "devDependencies": {
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
@@ -30,6 +34,7 @@
     "eslint-loader": "^1.5.0",
     "eslint-plugin-react": "^6.3.0",
     "file-loader": "^0.9.0",
+    "http-server": "^0.9.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2",
