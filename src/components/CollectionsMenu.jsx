@@ -1,20 +1,26 @@
 import { Card, CardActions, CardTitle } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from  'material-ui/FlatButton';
 import React from 'react';
 import { Component, PropTypes } from 'react';
+import { REPO_URL } from '../constants/urls';
 
 const styles = {
     card: {
         paddingBottom: 14,
     },
     footer: {
-        padding: '20px 0 25px',
+        display: 'flex',
+        flexShrink: 0,
+        flexBasis: '36px',
+        padding: '20px 16px 22px',
+        justifyContent: 'space-between',
         borderTop: '#ccc solid 1px',
-        textAlign: 'center',
     },
     container: {
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'space-between',
         height: '100%',
     },
     items: {
@@ -81,8 +87,16 @@ class CollectionsMenu extends Component {
                     </div>
                 }
                 <div style={styles.footer}>
+                    <FlatButton
+                        href={REPO_URL}
+                        target="_blank"
+                        label="Source"
+                        secondary={false}
+                        icon={<i className="fa fa-github fa-2x" />}
+                    />
                     <RaisedButton
                         label="Add collection"
+                        primary={true}
                         onClick={newItem.bind(null, true)}
                     />
                 </div>
