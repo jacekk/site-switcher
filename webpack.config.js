@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const DotEnv = require('dotenv-webpack');
 
 const isDevMode = process.argv.indexOf('--hot') > -1;
 
@@ -17,11 +18,10 @@ if (! isDevMode) {
         },
     }));
     plugins.push(new webpack.DefinePlugin({
-        "process.env": {
-            NODE_ENV: JSON.stringify("production"),
-            BROWSER: JSON.stringify(true),
-        },
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        'process.env.BROWSER': JSON.stringify(true),
     }));
+    plugins.push(new DotEnv());
 }
 
 module.exports = {
@@ -65,6 +65,5 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    hot: true,
   },
 };

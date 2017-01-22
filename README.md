@@ -1,5 +1,7 @@
 # Site switcher
 
+[![Build Status](https://travis-ci.org/jacekk/site-switcher.svg)](https://travis-ci.org/jacekk/site-switcher)
+
 ### Built with:
 
 * [React](https://facebook.github.io/react/)
@@ -11,8 +13,8 @@
 
 ### Requirements:
 
-* node 6.*
-* npm 3.*
+* node 6 or 7
+* npm 3 or 4
 
 ### License
 

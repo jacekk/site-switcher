@@ -1,4 +1,6 @@
-const sampleLinks = [
+const REPO_URL = 'https://github.com/jacekk/site-switcher';
+
+const SAMPLE_LINKS = [
     {
         title: 'Wrocław',
         url: 'http://jacek-k.net/my/content/coding/pogodynka/3081368',
@@ -25,4 +27,7 @@ const sampleLinks = [
     },
 ];
 
-export default sampleLinks;
+export {
+    REPO_URL,
+    SAMPLE_LINKS,
+};

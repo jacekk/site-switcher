@@ -23,7 +23,7 @@ const store = createStore(
     enhancers
 );
 
-export const history = syncHistoryWithStore(
+const history = syncHistoryWithStore(
     isElectronApp ? hashHistory : browserHistory,
     store
 );
@@ -33,6 +33,10 @@ if (module['hot']) {
         const nextRootReducer = require('./reducers/index').default;
         store.replaceReducer(nextRootReducer);
     });
+}
+
+export {
+    history,
 }
 
 export default store;
