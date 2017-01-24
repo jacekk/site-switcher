@@ -19,3 +19,7 @@
 ### License
 
 MIT
+
+### Preview
+
+![site-switcher jacekk](https://cloud.githubusercontent.com/assets/1695878/22272040/27325a98-e298-11e6-81cb-17f75a1d9ade.gif)
