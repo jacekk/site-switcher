@@ -1,6 +1,6 @@
 import * as types from '../constants/action-types';
 
-const initialState = {
+export const initialState = {
     lastPlayedCollectionId: null,
     currentLinkId: 0,
 };
@@ -10,7 +10,7 @@ const player = (state = initialState, action) => {
 
         case types.ROUTER_LOCATION_CHANGE:
             return Object.assign({}, state, {
-                currentLinkId: 0,
+                currentLinkId: initialState.currentLinkId,
             });
 
         case types.PLAY_NEXT_LINK:
