@@ -3,7 +3,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const styles = {
     wrapper: {
