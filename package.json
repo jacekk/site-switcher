@@ -23,7 +23,11 @@
     "url": "https://github.com/jacekk/site-switcher"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./tests/init.js"
+    "setupTestFrameworkScriptFile": "./tests/init.js",
+    "coveragePathIgnorePatterns": [
+        "/node_modules/",
+        "/tests/"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
