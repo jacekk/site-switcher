@@ -1,5 +1,5 @@
 import allReducers from './reducers/index';
-import { browserHistory, hashHistory } from 'react-router';
+import { browserHistory, hashHistory, createMemoryHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { routerReducer } from 'react-router-redux';
 import { combineReducers, compose, createStore } from 'redux';
@@ -23,10 +23,9 @@ const store = createStore(
     enhancers
 );
 
-const history = syncHistoryWithStore(
-    isElectronApp ? hashHistory : browserHistory,
-    store
-);
+const history = process.env.NODE_ENV === 'test' ?
+    createMemoryHistory() :
+    syncHistoryWithStore(isElectronApp ? hashHistory : browserHistory, store);
 
 if (module['hot']) {
     module.hot.accept('./reducers/', () => {

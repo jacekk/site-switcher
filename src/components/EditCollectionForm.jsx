@@ -1,6 +1,6 @@
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const styles = {
     btn: {

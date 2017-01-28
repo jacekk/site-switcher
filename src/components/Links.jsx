@@ -6,7 +6,7 @@ import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const styles = {
     header: {

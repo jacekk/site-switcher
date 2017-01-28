@@ -1,5 +1,5 @@
 {
-    "name": "site-switcher",
+    "name": "site-switcher-app",
     "version": "0.2.0",
     "description": "Electron app to display multiple websites (one after another).",
     "main": "app.js",

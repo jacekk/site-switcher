@@ -2,7 +2,7 @@ import Checkbox from 'material-ui/Checkbox';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const styles = {
     cols: {

@@ -5,7 +5,7 @@ import Dialog from 'material-ui/Dialog';
 import Drawer from 'material-ui/Drawer';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const styles = {
     mainContent: {

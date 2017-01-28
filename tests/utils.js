@@ -22,7 +22,7 @@ export const mockActions = (...list) => {
 
     list.forEach((actionName) => {
         mocked[actionName] = (...params) => {
-            console.log(`Action '${actionName}' invoked with ${params.length} params.`);
+            // console.log(`Action '${actionName}' invoked with ${params.length} params.`);
         };
     });
 
