@@ -1,8 +1,10 @@
 import React from 'react';
 
 import { renderInDiv, mount, mockActions } from '../../tests/utils';
+import { history } from '../store';
 import Home from './Home';
 
+const homePageText = 'There are no collections to play with.';
 const actions = mockActions('newCollectionDialog');
 
 describe('Home', () => {
@@ -19,6 +21,19 @@ describe('Home', () => {
                 actions={actions}
         />);
 
-        expect(home.text()).toContain('There are no collections to play with.');
+        expect(home.text()).toContain(homePageText);
     })
+
+    it('plays last collection if id passed', () => {
+        history.push = jest.fn();
+
+        const lastCollId = 'test-123-xyz';
+        const home = mount(<Home
+                noCollections={false}
+                lastPlayedId={lastCollId}
+                actions={actions}
+        />);
+
+        expect(history.push).toHaveBeenCalledWith(`/collections/${lastCollId}/play`);
+    });
 });
