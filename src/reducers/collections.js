@@ -28,9 +28,9 @@ const getPageTitleByPlayedCollectionAndLink = (state, collectionId, linkId) => {
     const joined = [
         link.title,
         collection.title,
-    ].join(' | ');
+    ].join(' | ').trim();
 
-    if (joined.trim() === '|') {
+    if (joined === '|') {
         return null;
     }
 

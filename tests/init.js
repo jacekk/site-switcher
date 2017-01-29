@@ -18,5 +18,6 @@ if (typeof sessionStorage === 'undefined' || sessionStorage === null) {
 }
 
 global.document = jsdom(jsDomMarkup, jsDomOpts);
+global.document.title = 'SiteSwitcher tests';
 global.window = document.defaultView;
 global.navigator = global.window.navigator;
