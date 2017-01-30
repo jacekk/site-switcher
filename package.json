@@ -5,8 +5,8 @@
   "main": "src/main.jsx",
   "scripts": {
     "lint": "eslint src",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch --coverage",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "web:dev": "webpack-dev-server -d --hot --inline --progress --colors",
     "web:build": "webpack --progress --colors",
     "web:serve": "http-server ./static -p 8090",
@@ -25,6 +25,7 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./tests/init.js",
+    "collectCoverage": true,
     "coveragePathIgnorePatterns": [
       "/src/store|material",
       "/node_modules/",

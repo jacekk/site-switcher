@@ -10,7 +10,11 @@ before_install:
     - npm install
     - cd ..
 
+install:
+    - npm install -g codecov
+
 script:
     - npm run test
+    - codecov
     - npm run web:build
     - npm run app:build:linux
