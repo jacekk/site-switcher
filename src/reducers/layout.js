@@ -1,6 +1,6 @@
 import * as types from '../constants/action-types';
 
-const initialState = {
+export const initialState = {
     leftDrawer: {
         opened: false,
     },

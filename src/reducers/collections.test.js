@@ -1,9 +1,10 @@
-import reducer, { initialState } from './collections';
+import reducer from './collections';
 import * as actions from '../actions/collections';
 import * as playerActions from  '../actions/player';
 import actionTypes from '../constants/action-types';
 
 describe('reducers/collections', () => {
+    const initialState = {};
     const defaultDocTitle = global.document.title;
     const firstId = 'id-111';
     const firstTitle = 'first collection title (111)';
