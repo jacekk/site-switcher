@@ -1,6 +1,8 @@
 # Site switcher
 
 [![Build Status](https://travis-ci.org/jacekk/site-switcher.svg)](https://travis-ci.org/jacekk/site-switcher)
+[![codecov](https://codecov.io/gh/jacekk/site-switcher/branch/master/graph/badge.svg)](https://codecov.io/gh/jacekk/site-switcher)
+
 
 Simple web app that allowes to configure some URLs and display their content one after another.
 Switch time is configurable for each URL. Multiple collections are allowed.
