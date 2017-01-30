@@ -4,6 +4,7 @@
   "description": "Web and Electron apps to display multiple websites (one after another).",
   "main": "src/main.jsx",
   "scripts": {
+    "lint": "eslint src",
     "test": "jest --coverage",
     "test:watch": "jest --watch --coverage",
     "web:dev": "webpack-dev-server -d --hot --inline --progress --colors",
@@ -25,6 +26,7 @@
   "jest": {
     "setupTestFrameworkScriptFile": "./tests/init.js",
     "coveragePathIgnorePatterns": [
+      "/src/store|material",
       "/node_modules/",
       "/tests/"
     ]

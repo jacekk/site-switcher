@@ -1,5 +1,5 @@
 import NewCollectionDialog from '../containers/NewCollectionDialog';
-import theme from '../material_ui_raw_theme_file';
+import theme from '../material-ui-theme';
 import CollectionsMenu from './CollectionsMenu';
 import Dialog from 'material-ui/Dialog';
 import Drawer from 'material-ui/Drawer';

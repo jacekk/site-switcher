@@ -4,7 +4,7 @@ import LinkEditContainer from '../containers/LinkEditContainer';
 import LinksPage from '../containers/LinksPage';
 import NewLinkContainer from '../containers/NewLinkContainer';
 import PlayerPage from '../containers/PlayerPage';
-import theme from '../material_ui_raw_theme_file';
+import theme from '../material-ui-theme';
 import { history } from '../store';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
