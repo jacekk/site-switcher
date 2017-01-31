@@ -48,5 +48,5 @@ describe('CollectionsMenu', () => {
         expect(titles.length).toEqual(2);
         expect(second.prop('title')).toEqual(itemsMock.id2.title);
         expect(second.prop('subtitle')).toEqual('links count: 2 | active: 1');
-    })
+    });
 });
