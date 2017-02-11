@@ -66,7 +66,7 @@ class NewLinkForm extends Component {
 
     onToggle(name, ev, toggled) {
         this.setState({
-            [name]: toggled,
+            [name]: ev.target.checked,
         });
     }
 
