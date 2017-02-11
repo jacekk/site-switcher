@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderInDiv, mockActions, mount, changeInput, changeElementInput } from '../../tests/utils';
+import { renderInDiv, mockActions, mount, changeInput, changeElementInput, clickElementBtn } from '../../tests/utils';
 import LinkForm from './LinkForm';
 
 const actions = mockActions(
@@ -16,7 +16,6 @@ describe('LinkForm', () => {
         duration: 17,
     };
 
-    const getSaveBtn = (form) => form.find('RaisedButton').at(1);
 
     it('renders without crashing', () => {
         renderInDiv(<LinkForm
@@ -26,39 +25,79 @@ describe('LinkForm', () => {
         />);
     });
 
-    it('toggles is active option', () => {
-        const form = mount(<LinkForm
-            title="form title"
-            link={linkBase}
-            actions={actions}
-        />);
+    describe('mounted', () => {
+        let form;
 
-        expect(form.state().isActive).toBe(true);
+        const getSaveBtn = () => form.find('RaisedButton').at(1);
 
-        changeInput(form, 'Toggle', false, 'checked');
+        beforeEach(() => {
+            form = mount(<LinkForm
+                title="form title"
+                link={linkBase}
+                actions={actions}
+            />);
+        });
 
-        expect(form.state().isActive).toBe(false);
+        it('toggles is active option', () => {
+            expect(form.state().isActive).toBe(true);
 
-        changeInput(form, 'Toggle', true, 'checked');
+            changeInput(form, 'Toggle', false, 'checked');
 
-        expect(form.state().isActive).toBe(true);
-    });
+            expect(form.state().isActive).toBe(false);
 
-    it('validates required title field', () => {
-        const form = mount(<LinkForm
-            title="form title"
-            link={linkBase}
-            actions={actions}
-        />);
+            changeInput(form, 'Toggle', true, 'checked');
 
-        expect(getSaveBtn(form).prop('disabled')).toBe(false);
+            expect(form.state().isActive).toBe(true);
+        });
 
-        changeElementInput(form.ref('title').first(), ''),
+        it('validates required title field', () => {
+            expect(getSaveBtn().prop('disabled')).toBe(false);
 
-        expect(getSaveBtn(form).prop('disabled')).toBe(true);
+            changeElementInput(form.ref('title').first(), '');
 
-        changeElementInput(form.ref('title').first(), 'valid title'),
+            expect(getSaveBtn().prop('disabled')).toBe(true);
 
-        expect(getSaveBtn(form).prop('disabled')).toBe(false);
+            changeElementInput(form.ref('title').first(), 'valid title');
+
+            expect(getSaveBtn().prop('disabled')).toBe(false);
+        });
+
+        it('validates required url field', () => {
+            expect(getSaveBtn().prop('disabled')).toBe(false);
+
+            changeElementInput(form.ref('url').first(), '');
+
+            expect(getSaveBtn().prop('disabled')).toBe(true);
+
+            changeElementInput(form.ref('url').first(), 'non-valid-url');
+
+            expect(getSaveBtn().prop('disabled')).toBe(true);
+
+            changeElementInput(form.ref('url').first(), 'http://valid.url/whatever');
+
+            expect(getSaveBtn().prop('disabled')).toBe(false);
+        });
+
+        it('submits form with current inputs', () => {
+            actions.onSubmitCallback = jest.fn();
+
+            const newValues = {
+                title: 'new valid title',
+                url: 'http://valid.url/whatever',
+                duration: 66,
+                isActive: false,
+            };
+
+            changeElementInput(form.ref('url').first(), newValues.url);
+            changeElementInput(form.ref('title').first(), newValues.title);
+            changeElementInput(form.ref('duration').first(), newValues.duration.toString());
+            changeInput(form, 'Toggle', newValues.isActive, 'checked');
+
+            expect(actions.onSubmitCallback).not.toHaveBeenCalled();
+
+            clickElementBtn(getSaveBtn());
+
+            expect(actions.onSubmitCallback).toHaveBeenCalledWith(newValues);
+        });
     });
 });

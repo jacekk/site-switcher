@@ -12,7 +12,8 @@ export const changeInput = (root, inputWrapperName, newVal, valueKey = 'value') 
 
 export const changeElementInput = (element, newVal, valueKey = 'value') => {
     element
-        .find('input').first()
+        .find('input')
+        .first()
         .simulate('change', {
             target: {
                 [valueKey]: newVal,
@@ -21,9 +22,15 @@ export const changeElementInput = (element, newVal, valueKey = 'value') => {
 };
 
 export const clickBtn = (root, inputWrapperName) => {
-    root
-        .find(inputWrapperName).at(1)
-        .find('button').first()
+    clickElementBtn(
+        root.find(inputWrapperName).at(1)
+    );
+};
+
+export const clickElementBtn = (element) => {
+    element
+        .find('button')
+        .first()
         .simulate('click');
 };
 
