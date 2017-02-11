@@ -4,7 +4,7 @@
   "description": "Web and Electron apps to display multiple websites (one after another).",
   "main": "src/main.jsx",
   "scripts": {
-    "lint": "eslint src",
+    "lint": "eslint src/*.js src/**/*.js src/*.jsx src/**/*.jsx",
     "test": "jest",
     "test:watch": "jest --watch",
     "web:dev": "webpack-dev-server -d --hot --inline --progress --colors",
