@@ -6,12 +6,18 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export const changeInput = (root, inputWrapperName, newVal, valueKey = 'value') => {
-    root
-        .find(inputWrapperName).first()
+    const element = root.find(inputWrapperName).first();
+    changeElementInput(element, newVal, valueKey);
+};
+
+export const changeElementInput = (element, newVal, valueKey = 'value') => {
+    element
         .find('input').first()
-        .simulate('change', { target: {
-            [valueKey]: newVal,
-        } });
+        .simulate('change', {
+            target: {
+                [valueKey]: newVal,
+            },
+        });
 };
 
 export const clickBtn = (root, inputWrapperName) => {

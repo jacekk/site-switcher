@@ -39,32 +39,31 @@ class NewLinkForm extends Component {
 
     constructor(props) {
         super(props);
-        const { link } = this.props;
 
         this.state = {
-            isActive: link.isActive !== undefined ? link.isActive : true,
-            isFormValid: (link && link.title) || false,
+            ...this.props.link,
         };
     }
 
-    onInputChange(propName, ev, value) {
-        this.props.link[propName] = value;
-        this.validateFields();
-    }
-
-    validateFields() {
-        const emptyFields = REQUIRED_FIELDS.filter(propName => {
-            return this.refs[propName].getValue().trim() === '';
-        })
-        const noEmptyFields = emptyFields.length === 0;
-        const urlValue = this.refs.url.getValue().trim();
+    onInputChange(propName, ev, propValue) {
+        const trimmed = ev.target.value && ev.target.value.trim ? ev.target.value.trim() : '';
 
         this.setState({
-            isFormValid: noEmptyFields && isURL(urlValue, URL_REQUIREMENTS),
+            [propName]: trimmed,
         });
     }
 
-    onToggle(name, ev, toggled) {
+    areFieldsValid() {
+        const emptyFields = REQUIRED_FIELDS.filter(propName => {
+            return this.state[propName] === '';
+        });
+        const noEmptyFields = emptyFields.length === 0;
+        const urlValue = this.state.url || '';
+
+        return noEmptyFields && isURL(urlValue, URL_REQUIREMENTS);
+    }
+
+    onToggle(name, ev) {
         this.setState({
             [name]: ev.target.checked,
         });
@@ -72,9 +71,9 @@ class NewLinkForm extends Component {
 
     onSubmit() {
         this.props.actions.onSubmitCallback({
-            title: this.refs.title.getValue(),
-            url: this.refs.url.getValue(),
-            duration: parseInt(this.refs.duration.getValue(), 10),
+            title: this.state.title,
+            url: this.state.url,
+            duration: parseInt(this.state.duration, 10),
             isActive: this.state.isActive,
         });
     }
@@ -82,6 +81,7 @@ class NewLinkForm extends Component {
     render() {
         const { link } = this.props;
         const { onCancel } = this.props.actions;
+        const isFormValid = this.areFieldsValid();
 
         return (
             <aside style={styles.wrapper}>
@@ -140,7 +140,7 @@ class NewLinkForm extends Component {
                         label="Save"
                         primary={true}
                         onClick={this.onSubmit.bind(this)}
-                        disabled={! this.state.isFormValid}
+                        disabled={! isFormValid}
                     />
                 </div>
             </aside>
