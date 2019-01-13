@@ -8,3 +8,4 @@ static/
 .env
 electron-app/releases/
 electron-app/dist/**
+package-lock.json
