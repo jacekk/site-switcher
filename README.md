@@ -27,8 +27,8 @@ Electron app, which might solve that and some other issues, is still a *someday*
 
 ### Requirements:
 
-* node 6/7
-* npm 3/4
+* node 8/10
+* npm 6
 
 ### License
 
