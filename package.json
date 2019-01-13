@@ -10,6 +10,7 @@
     "web:dev": "webpack-dev-server -d --hot --inline --progress --colors",
     "web:build": "webpack --progress --colors",
     "web:serve": "http-server ./static -p 8090",
+    "app:install": "cd electron-app && npm install",
     "app:prepare": "rm -rf electron-app/dist && mkdir electron-app/dist",
     "app:dev": "npm run app:prepare && webpack --watch --progress --colors --config webpack.electron.js",
     "app:run": "./node_modules/.bin/electron electron-app",

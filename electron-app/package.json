@@ -1,30 +1,30 @@
 {
     "name": "site-switcher-app",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Electron app to display multiple websites (one after another).",
     "main": "app.js",
     "homepage": "https://github.com/jacekk/site-switcher",
     "author": {
         "name": "JacekK",
-        "email": "github.com@jacek-k.net",
+        "email": "dev-null@jacek-k.net",
         "url": "https://github.com/jacekk"
     },
     "build": {
+        "directories": {
+            "buildResources": "resources",
+            "output": "releases"
+        },
         "appId": "net.jacek-k.site-switcher",
-        "category": "public.app-category.utilities",
         "linux": {
+            "category": "public.app-category.utilities",
             "target": [
                 "deb",
                 "AppImage"
             ]
         }
     },
-    "directories": {
-        "buildResources": "resources",
-        "output": "releases"
-    },
     "devDependencies": {
-        "electron": "^1.4.5",
-        "electron-builder": "^7.18.0"
+        "electron": "^1.8.8",
+        "electron-builder": "^20.38.4"
     }
 }
