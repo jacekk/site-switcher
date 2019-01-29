@@ -1,69 +1,50 @@
-const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-const isDevMode = process.argv.indexOf('--hot') > -1;
+module.exports = (_, argv) => {
+    const isDevMode = argv.mode !== 'production';
 
-let plugins = [
-    new webpack.optimize.CommonsChunkPlugin("vendor", "vendors.js"),
-];
-
-if (! isDevMode) {
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-        include: /main/,
-    }));
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-        include: /vendors/,
-        compress: {
-            warnings: false,
+    return {
+        context: __dirname,
+        entry: {
+            main: './src/main.jsx',
         },
-    }));
-    plugins.push(new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-        'process.env.BROWSER': JSON.stringify(true),
-    }));
-    plugins.push(new DotEnv());
-}
-
-module.exports = {
-  context: __dirname,
-  plugins: plugins,
-  entry: {
-    jsx: "./src/main.jsx",
-    html: "./src/index.html",
-    css: "./src/main.css",
-    favicon: "./src/favicon.ico",
-    vendor: [ // those cause warnings in UglifyJs:
-      "redux",
-      "react-router",
-      "react-redux",
-      "react-router-redux",
-      "react-tap-event-plugin",
-      "material-ui",
-    ],
-  },
-  output: {
-    path: __dirname + "/static",
-    filename: "main.js",
-  },
-  module: {
-    preLoaders: [
-        //Eslint loader
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: "eslint-loader"},
-    ],
-    loaders: [
-      { test: /\.html$/, loader: "file?name=[name].[ext]" },
-      { test: /\.css$/, loader: "file?name=[name].[ext]" },
-      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ["react-hot","babel-loader"]},
-      { test: /\.htaccess|\.ico$/, loader: "file?name=[name].[ext]" },
-    ],
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
-  eslint: {
-    configFile: './.eslintrc',
-  },
-  devServer: {
-    historyApiFallback: true,
-  },
+        output: {
+            path: path.resolve(__dirname, './static'),
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.jsx?$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                    },
+                },
+            ],
+        },
+        resolve: {
+            extensions: ['.js', '.jsx'],
+        },
+        devServer: {
+            contentBase: './static',
+            historyApiFallback: true,
+            port: 8081,
+        },
+        plugins: [
+            new CleanWebpackPlugin(['./static']),
+            new CopyWebpackPlugin([
+                { from: './src/index.html' },
+                { from: './src/main.css' },
+            ]),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify('production'),
+                'process.env.BROWSER': JSON.stringify(true),
+            }),
+            !isDevMode && new DotEnv(),
+        ].filter(Boolean),
+    };
 };
