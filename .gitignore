@@ -9,3 +9,4 @@ static/
 electron-app/releases/
 electron-app/dist/**
 package-lock.json
+yarn.lock
