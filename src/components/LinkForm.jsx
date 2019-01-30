@@ -28,6 +28,7 @@ const styles = {
     },
 };
 
+const DEFAULT_DURATION = 5;
 const REQUIRED_FIELDS = ['url', 'title', 'duration'];
 const URL_REQUIREMENTS = {
     protocols: ['http', 'https'],
@@ -70,10 +71,12 @@ class NewLinkForm extends Component {
     }
 
     onSubmit() {
+        const duration = this.state.duration ? parseInt(this.state.duration, 10) : DEFAULT_DURATION
+
         this.props.actions.onSubmitCallback({
             title: this.state.title,
             url: this.state.url,
-            duration: parseInt(this.state.duration, 10),
+            duration,
             isActive: this.state.isActive,
         });
     }
@@ -120,7 +123,7 @@ class NewLinkForm extends Component {
                         ref="duration"
                         fullWidth={true}
                         required
-                        defaultValue={link.duration || 5}
+                        defaultValue={link.duration || DEFAULT_DURATION}
                         onChange={this.onInputChange.bind(this, 'duration')}
                     />
                     <Toggle
