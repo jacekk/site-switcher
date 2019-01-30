@@ -1,19 +1,28 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
 const webpack = require('webpack');
-const webpackBase = require('./webpack.config.js');
 
-delete webpackBase.devServer;
-delete webpackBase.entry.vendor;
+const createBaseConfig = require('./webpack.config.js');
 
-webpackBase.output.path = __dirname + "/electron-app/dist";
-webpackBase.entry.html = "./src/electron-app.html";
+module.exports = (_, argv) => {
+    const baseConfig = createBaseConfig(_, argv);
 
-webpackBase.plugins = [
-    new webpack.DefinePlugin({
-        "process.env": {
-            NODE_ENV: JSON.stringify("production"),
-            BROWSER: JSON.stringify(true),
-        },
-    }),
-];
+    delete baseConfig.devServer;
 
-module.exports = webpackBase;
+    baseConfig.output.path = path.resolve(__dirname, './electron-app/dist');
+
+    baseConfig.plugins = [
+        new CopyWebpackPlugin([
+            { from: './src/electron-app.html' },
+            { from: './src/main.css' },
+        ]),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(argv.mode),
+                BROWSER: JSON.stringify(true),
+            },
+        }),
+    ];
+
+    return baseConfig;
+};

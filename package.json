@@ -12,9 +12,9 @@
     "web:serve": "http-server ./static -p 8090",
     "app:install": "cd electron-app && npm install",
     "app:prepare": "rm -rf electron-app/dist && mkdir electron-app/dist",
-    "app:dev": "npm run app:prepare && webpack --watch --progress --colors --config webpack.electron.js",
+    "app:dev": "npm run app:prepare && webpack --watch --mode development --config webpack.electron.js",
     "app:run": "./node_modules/.bin/electron electron-app",
-    "app:prepare:build": "npm run app:prepare && webpack --progress --colors --config webpack.electron.js",
+    "app:prepare:build": "npm run app:prepare && webpack --mode production --config webpack.electron.js",
     "app:build:linux": "npm run app:prepare:build && cd electron-app && ./node_modules/.bin/build --linux",
     "app:build:arm": "npm run app:prepare:build && cd electron-app && ./node_modules/.bin/build --armv7l"
   },

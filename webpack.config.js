@@ -41,8 +41,10 @@ module.exports = (_, argv) => {
                 { from: './src/main.css' },
             ]),
             new webpack.DefinePlugin({
-                'process.env.NODE_ENV': JSON.stringify('production'),
-                'process.env.BROWSER': JSON.stringify(true),
+                'process.env': {
+                    NODE_ENV: JSON.stringify(argv.mode),
+                    BROWSER: JSON.stringify(true),
+                },
             }),
             !isDevMode && new DotEnv(),
         ].filter(Boolean),
