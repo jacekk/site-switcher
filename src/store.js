@@ -11,7 +11,7 @@ const enhancers = compose(
     persistState(null, {
         key: 'site-switcher-v0.2.0',
     }),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
 );
 
 const store = createStore(

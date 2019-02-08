@@ -28,7 +28,7 @@ class TableOfLinks extends Component {
         this.state = {};
     }
 
-    renderRow(link, index, list) {
+    renderRow(link, index) {
         const { moveUp, remove, goTo } = this.props;
 
         const closeRemovalDialog = () => {
@@ -50,10 +50,12 @@ class TableOfLinks extends Component {
 
         const removalActions = [
             <FlatButton
+                key="discard-button"
                 label="Discard"
                 onTouchTap={closeRemovalDialog}
             />,
             <FlatButton
+                key="remove-button"
                 label="Remove"
                 secondary={true}
                 onTouchTap={removeLinkConfirmed}
@@ -64,7 +66,9 @@ class TableOfLinks extends Component {
             <TableRow key={index} selectable={false} >
                 <TableRowColumn>{ link.title }</TableRowColumn>
                 <TableRowColumn>
-                    <a href={link.url} target="_blank" >{ link.url }</a>
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" >
+                        { link.url }
+                    </a>
                 </TableRowColumn>
                 <TableRowColumn style={styles.cols.narrow} >
                     { link.duration }
@@ -86,7 +90,7 @@ class TableOfLinks extends Component {
                         open={this.state[index] || false}
                         onRequestClose={closeRemovalDialog}
                     >
-                        Do you really want to remove "{link.title}" link?
+                        Do you really want to remove &quote;{link.title}&quote; link?
                     </Dialog>
                 </TableRowColumn>
             </TableRow>

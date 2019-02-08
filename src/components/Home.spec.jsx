@@ -25,10 +25,10 @@ describe('Home', () => {
     })
 
     it('plays last collection if id passed', () => {
-        history.push = jest.fn();
-
         const lastCollId = 'test-123-xyz';
-        const home = mount(<Home
+
+        history.push = jest.fn();
+        mount(<Home
                 noCollections={false}
                 lastPlayedId={lastCollId}
                 actions={actions}

@@ -1,6 +1,5 @@
 import * as types from '../constants/action-types';
 import { SAMPLE_LINKS } from '../constants/urls';
-import uuid from 'uuid';
 
 const EXAMPLE_UUID = '45ce39d5-b91c-4d50-89ab-22bd9757e903';
 

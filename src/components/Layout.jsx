@@ -64,6 +64,7 @@ class Layout extends Component {
 }
 
 Layout.propTypes = {
+    children: PropTypes.node.isRequired,
     collections: PropTypes.object.isRequired,
     isLeftDrawerOpened: PropTypes.bool.isRequired,
     dialogs: PropTypes.shape({
