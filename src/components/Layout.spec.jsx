@@ -17,6 +17,8 @@ describe('Layout', () => {
             isLeftDrawerOpened={false}
             dialogs={{ isNewCollectionOpen: false }}
             actions={actions}
-        />);
+        >
+            <span />
+        </Layout>);
     });
 });

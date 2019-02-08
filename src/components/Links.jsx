@@ -148,7 +148,7 @@ class Links extends Component {
 }
 
 Links.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     collection: PropTypes.object.isRequired,
     dialogs: PropTypes.shape({
         isEditCollectionOpen: PropTypes.bool.isRequired,
