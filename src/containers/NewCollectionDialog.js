@@ -15,7 +15,7 @@ const mapStateToProps = () => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            save: (title, emptyId) => {
+            save: (title) => {
                 const newId = uuid.v4();
                 dispatch(addNewCollection(newId, title));
                 dispatch(toggleNewCollectionDialog(false));

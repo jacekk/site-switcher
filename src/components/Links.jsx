@@ -59,10 +59,12 @@ class Links extends Component {
 
         const collectionRemovalActions = [
             <FlatButton
+                key="discard-button"
                 label="Discard"
                 onTouchTap={toggleRemoveCollectionDialog.bind(null, false)}
             />,
             <FlatButton
+                key="remove-button"
                 label="Remove"
                 secondary={true}
                 onTouchTap={removeCollection.bind(null, collectionId)}
@@ -138,7 +140,7 @@ class Links extends Component {
                     open={this.props.dialogs.isRemoveCollectionOpen}
                     onRequestClose={toggleRemoveCollectionDialog.bind(null, false)}
                 >
-                    Do you really want to remove "{title}" collection?
+                    Do you really want to remove &quote;{title}&quote; collection?
                 </Dialog>
             </div>
         );
@@ -146,6 +148,7 @@ class Links extends Component {
 }
 
 Links.propTypes = {
+    children: PropTypes.node.isRequired,
     collection: PropTypes.object.isRequired,
     dialogs: PropTypes.shape({
         isEditCollectionOpen: PropTypes.bool.isRequired,

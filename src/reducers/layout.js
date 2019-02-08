@@ -52,7 +52,7 @@ const layout = (state = initialState, action) => {
                     opened: false,
                 },
             });
-    };
+    }
 
     return state;
 };

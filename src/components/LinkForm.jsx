@@ -46,7 +46,7 @@ class NewLinkForm extends Component {
         };
     }
 
-    onInputChange(propName, ev, propValue) {
+    onInputChange(propName, ev) {
         const trimmed = ev.target.value && ev.target.value.trim ? ev.target.value.trim() : '';
 
         this.setState({
@@ -69,6 +69,7 @@ class NewLinkForm extends Component {
             [name]: ev.target.checked,
         });
     }
+
 
     onSubmit() {
         const duration = this.state.duration ? parseInt(this.state.duration, 10) : DEFAULT_DURATION
