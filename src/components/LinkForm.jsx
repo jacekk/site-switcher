@@ -2,8 +2,7 @@ import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
-import React from 'react';
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import isURL from 'validator/lib/isURL';
 
 const styles = {

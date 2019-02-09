@@ -1,6 +1,6 @@
 import reducer, { initialState } from './player';
 import * as actions from '../actions/player';
-import actionTypes from '../constants/action-types';
+import { ROUTER_LOCATION_CHANGE } from '../constants/action-types';
 
 describe('reducers/players', () => {
     const linkId = 'link-123';
@@ -31,7 +31,7 @@ describe('reducers/players', () => {
 
         expect(state.currentLinkId).toEqual(linkId);
 
-        reduced = reducer(state, { type: actionTypes.ROUTER_LOCATION_CHANGE });
+        reduced = reducer(state, { type: ROUTER_LOCATION_CHANGE });
 
         expect(reduced.currentLinkId).toEqual(initialState.currentLinkId);
         expect(state.currentLinkId).toEqual(linkId);

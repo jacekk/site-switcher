@@ -1,7 +1,7 @@
 import reducer from './collections';
 import * as actions from '../actions/collections';
 import * as playerActions from  '../actions/player';
-import actionTypes from '../constants/action-types';
+import { ROUTER_LOCATION_CHANGE } from '../constants/action-types';
 
 describe('reducers/collections', () => {
     const initialState = {};
@@ -201,7 +201,7 @@ describe('reducers/collections', () => {
 
             expect(global.document.title).toEqual(titleFromFirstLink);
 
-            reduced = reducer(reduced, { type: actionTypes.ROUTER_LOCATION_CHANGE });
+            reduced = reducer(reduced, { type: ROUTER_LOCATION_CHANGE });
 
             expect(global.document.title).toEqual(defaultDocTitle);
         });

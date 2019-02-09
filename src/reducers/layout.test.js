@@ -21,19 +21,19 @@ describe('reducers/players', () => {
             editCollectionDialog: 'toggleEditCollectionDialog',
             removeCollectionDialog: 'toggleRemoveCollectionDialog',
         };
-
         Object.keys(elementsMap).forEach((elemName) => {
+            /* eslint-disable import/namespace */
             const actionName = elementsMap[elemName];
 
             expect(state[elemName].opened).toEqual(false);
 
             reduced = reducer(state, actions[actionName](true));
-
             expect(reduced[elemName].opened).toEqual(true);
 
             reduced = reducer(reduced, actions[actionName](false));
 
             expect(reduced[elemName].opened).toEqual(false);
+            /* eslint-enable import/namespace */
         });
     });
 

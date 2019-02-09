@@ -1,8 +1,7 @@
 import { Card, CardActions, CardTitle } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from  'material-ui/FlatButton';
-import React from 'react';
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { REPO_URL } from '../constants/urls';
 
 const styles = {

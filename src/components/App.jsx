@@ -7,8 +7,7 @@ import PlayerPage from '../containers/PlayerPage';
 import theme from '../material-ui-theme';
 import { history } from '../store';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { IndexRoute, Route, Router } from 'react-router';
 
 const routerConfig = (

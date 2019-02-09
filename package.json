@@ -27,7 +27,9 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFiles": ["./tests/init.js"],
+    "setupFiles": [
+      "./tests/init.js"
+    ],
     "collectCoverage": true,
     "coveragePathIgnorePatterns": [
       "/src/store|material",
@@ -53,6 +55,7 @@
     "electron": "^4.0.3",
     "enzyme": "^2.7.1",
     "eslint": "^5.13.0",
+    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-react": "^7.12.4",
     "http-server": "^0.11.1",
     "istanbul": "^0.4.5",

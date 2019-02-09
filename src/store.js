@@ -1,7 +1,6 @@
 import allReducers from './reducers/index';
 import { browserHistory, hashHistory, createMemoryHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { routerReducer } from 'react-router-redux';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import { combineReducers, compose, createStore } from 'redux';
 import persistState from 'redux-localstorage';
 
