@@ -19,6 +19,10 @@
     "app:build:linux": "npm run app:prepare:build && cd electron-app && ./node_modules/.bin/build --linux",
     "app:build:arm": "npm run app:prepare:build && cd electron-app && ./node_modules/.bin/build --armv7l"
   },
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x"
+  },
   "author": "https://github.com/jacekk",
   "license": "MIT",
   "repository": {

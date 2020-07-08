@@ -23,6 +23,10 @@
             ]
         }
     },
+    "engines": {
+        "node": "10.x",
+        "npm": "6.x"
+    },
     "devDependencies": {
         "electron": "^1.8.8",
         "electron-builder": "^20.38.4"
