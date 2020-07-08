@@ -16,8 +16,8 @@
     "app:dev": "npm run app:prepare && webpack --watch --mode development --config webpack.electron.js",
     "app:run": "./node_modules/.bin/electron electron-app",
     "app:prepare:build": "npm run app:prepare && webpack --mode production --config webpack.electron.js",
-    "app:build:linux": "npm run app:prepare:build && cd electron-app && ./node_modules/.bin/build --linux",
-    "app:build:arm": "npm run app:prepare:build && cd electron-app && ./node_modules/.bin/build --armv7l"
+    "app:build:linux": "npm run app:prepare:build && cd electron-app && ./node_modules/.bin/electron-builder --linux",
+    "app:build:arm": "npm run app:prepare:build && cd electron-app && ./node_modules/.bin/electron-builder --armv7l"
   },
   "engines": {
     "node": "10.x",
@@ -56,7 +56,7 @@
     "codecov": "^3.1.0",
     "copy-webpack-plugin": "^4.6.0",
     "dotenv-webpack": "^1.3.2",
-    "electron": "^4.0.3",
+    "electron": "^9.1.0",
     "enzyme": "^2.7.1",
     "eslint": "^5.13.0",
     "eslint-plugin-import": "^2.16.0",
